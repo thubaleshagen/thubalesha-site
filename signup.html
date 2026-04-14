@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THUBALESHA Referral Signup</title>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Segoe UI;
+background:#0a0a0a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:flex-start;
+min-height:100vh;
+padding:40px 10px;
+}
+
+.container{
+background:#141414;
+padding:30px;
+border-radius:10px;
+width:420px;
+box-shadow:0 0 30px rgba(255,215,0,0.3);
+}
+
+h2{
+text-align:center;
+color:gold;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:6px;
+background:#222;
+color:white;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+background:gold;
+border:none;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#ffd700;
+}
+
+.success{
+margin-top:15px;
+text-align:center;
+color:#00ff9d;
+font-weight:bold;
+}
+
+.error{
+margin-top:15px;
+text-align:center;
+color:#ff4d4d;
+font-weight:bold;
+}
+
+.dashboard{
+background:#222;
+padding:15px;
+border-radius:8px;
+margin-top:15px;
+}
+
+.share{
+background:#25D366;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- SIGNUP -->
+
+<div class="container" id="signupBox">
+
+<h2>THUBALESHA Signup</h2>
+
+<form id="signupForm">
+
+<input type="text" id="name" placeholder="Full Name" required>
+
+<input type="text" id="idnumber" placeholder="ID Number" required>
+
+<input type="text" id="contact" placeholder="Contact Number" required>
+
+<input type="email" id="email" placeholder="Email Address" required>
+
+<input type="text" id="address" placeholder="Home Address" required>
+
+<input type="text" id="referred" placeholder="Referral Code (Optional)">
+
+<button type="submit">Create Account</button>
+
+</form>
+
+<div id="msg"></div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div class="container" id="dashboardBox" style="display:none;">
+
+<h2>My Dashboard</h2>
+
+<p><b>Name:</b> <span id="dashName"></span></p>
+
+<p><b>My Referral Code:</b> <span id="dashReferral"></span></p>
+
+<p><b>Friends Referred:</b> <span id="dashCount">0</span></p>
+
+<div class="dashboard" id="friendsList"></div>
+
+<button class="share" onclick="shareReferral()">Share on WhatsApp</button>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+
+<script>
+
+// EMAILJS INIT
+
+(function(){
+emailjs.init("0PazREzQtkxaCNEKN");
+})();
+
+
+const USERS_KEY="thubalesha_users";
+
+
+
+// GENERATE REFERRAL CODE
+
+function generateReferral(){
+
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+let code="THUBA-";
+
+for(let i=0;i<6;i++){
+
+code+=chars.charAt(Math.floor(Math.random()*chars.length));
+
+}
+
+return code;
+
+}
+
+
+
+// GET USERS
+
+function getUsers(){
+
+return JSON.parse(localStorage.getItem(USERS_KEY)||"[]");
+
+}
+
+
+
+// SAVE USERS
+
+function saveUsers(users){
+
+localStorage.setItem(USERS_KEY,JSON.stringify(users));
+
+}
+
+
+
+// SIGNUP
+
+document.getElementById("signupForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let users=getUsers();
+
+let name=document.getElementById("name").value;
+
+let idnumber=document.getElementById("idnumber").value;
+
+let contact=document.getElementById("contact").value;
+
+let email=document.getElementById("email").value;
+
+let address=document.getElementById("address").value;
+
+let referred=document.getElementById("referred").value.trim();
+
+let referral=generateReferral();
+
+
+// CREATE USER
+
+let newUser={
+
+name,
+
+idnumber,
+
+contact,
+
+email,
+
+address,
+
+referral,
+
+referred,
+
+friends:[]
+
+};
+
+users.push(newUser);
+
+
+// ADD REFERRAL FRIEND
+
+if(referred){
+
+let refUser=users.find(u=>u.referral===referred);
+
+if(refUser){
+
+refUser.friends.push(name);
+
+}
+
+}
+
+
+saveUsers(users);
+
+
+// SEND EMAIL
+
+emailjs.send("service_z1c4gpi","template_5tupw7g",{
+
+name:name,
+
+id:idnumber,
+
+contact:contact,
+
+email:email,
+
+address:address,
+
+referred:referred,
+
+referral:referral
+
+})
+
+.then(function(){
+
+document.getElementById("msg").innerHTML=
+
+`<div class="success">
+
+Signup Successful!<br>
+
+Your Referral Code:<br>
+
+<b>${referral}</b>
+
+</div>`;
+
+})
+
+.catch(function(error){
+
+document.getElementById("msg").innerHTML=
+
+`<div class="error">
+
+Signup saved but email failed.
+
+</div>`;
+
+console.log(error);
+
+});
+
+
+// SHOW DASHBOARD
+
+showDashboard(newUser);
+
+});
+
+
+
+
+// DASHBOARD
+
+function showDashboard(user){
+
+document.getElementById("signupBox").style.display="none";
+
+document.getElementById("dashboardBox").style.display="block";
+
+document.getElementById("dashName").innerText=user.name;
+
+document.getElementById("dashReferral").innerText=user.referral;
+
+
+let users=getUsers();
+
+let myData=users.find(u=>u.referral===user.referral);
+
+let count=myData.friends.length;
+
+document.getElementById("dashCount").innerText=count;
+
+
+let friendsHTML="";
+
+myData.friends.forEach(f=>{
+
+friendsHTML+=`<p>${f}</p>`;
+
+});
+
+document.getElementById("friendsList").innerHTML=friendsHTML;
+
+}
+
+
+
+// WHATSAPP SHARE
+
+function shareReferral(){
+
+let code=document.getElementById("dashReferral").innerText;
+
+let text=`Join THUBALESHA and use my referral code: ${code}`;
+
+let url="https://wa.me/?text="+encodeURIComponent(text);
+
+window.open(url);
+
+}
+
+
+
+// LOGOUT
+
+function logout(){
+
+document.getElementById("signupBox").style.display="block";
+
+document.getElementById("dashboardBox").style.display="none";
+
+}
+
+</script>
+
+</body>
+</html>

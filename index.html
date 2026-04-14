@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THUBALESHA Fragrance</title>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#fffaf5;
+color:#2c2c2c;
+}
+
+/* HEADER */
+
+header{
+background:#000;
+padding:1.5rem;
+text-align:center;
+color:#fff;
+}
+
+nav{
+display:flex;
+justify-content:center;
+gap:16px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+nav a{
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+}
+
+.link-btn{
+background:#d4af37;
+color:#000;
+padding:.6rem 1.2rem;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+padding:100px 20px;
+text-align:center;
+overflow:hidden;
+}
+
+.hero video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
+}
+
+.hero img{
+width:80%;
+max-width:380px;
+border-radius:14px;
+}
+
+.tagline{
+margin-top:15px;
+background:rgba(0,0,0,.55);
+color:#fff;
+display:inline-block;
+padding:.6rem 1.2rem;
+border-radius:8px;
+}
+
+/* SECTIONS */
+
+.section{
+padding:3rem 1rem;
+text-align:center;
+}
+
+details{
+max-width:760px;
+margin:30px auto;
+background:#fff;
+padding:1.8rem;
+border-radius:20px;
+box-shadow:0 6px 20px rgba(0,0,0,.12);
+}
+
+summary{
+font-size:1.5rem;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* PRODUCT IMAGES */
+
+.family-images{
+display:flex;
+gap:12px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:16px;
+}
+
+.family-images img{
+width:110px;
+height:130px;
+object-fit:cover;
+border-radius:14px;
+box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+/* BUTTON */
+
+.buy-button{
+display:inline-block;
+margin-top:18px;
+background:#000;
+color:#fff;
+padding:.7rem 1.6rem;
+border-radius:10px;
+text-decoration:none;
+border:none;
+cursor:pointer;
+}
+
+/* CART */
+
+#cartPanel{
+position:fixed;
+right:0;
+top:0;
+width:330px;
+height:100%;
+background:white;
+box-shadow:-4px 0 15px rgba(0,0,0,.3);
+padding:20px;
+display:none;
+overflow:auto;
+z-index:999;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin-top:8px;
+}
+
+/* FREE GIFT BAR */
+
+#giftBox{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:10px;
+}
+
+footer{
+background:#333;
+color:#fff;
+padding:1.2rem;
+text-align:center;
+}
+
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all .9s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<img src="logo2.png" width="280">
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#families">Families</a>
+<a href="#contact">Contact</a>
+
+
+<a class="link-btn" href="products">products</a>
+
+</nav>
+
+</header>
+
+<section class="hero fade" id="home">
+
+<video autoplay loop muted playsinline>
+<source src="aaamaybe.mp4">
+</video>
+
+<img src="GIF-1.gif">
+
+<p class="tagline">A scent that lingers in their memory</p>
+
+</section>
+
+<section class="section fade">
+
+<h2>About THUBALESHA</h2>
+
+<p style="max-width:600px;margin:auto">
+
+THUBALESHA Fragrance presents a curated collection of fragrance families crafted to express mood, confidence and lifestyle.
+
+</p>
+
+</section>
+
+<section id="giftBox">
+
+<h3>Spend R750 Get a FREE Gift 🎁</h3>
+
+<progress id="giftBar" value="0" max="1000" style="width:100%"></progress>
+
+</section>
+
+<section class="section fade" id="families">
+
+<h2>Fragrance Families</h2>
+
+<details open>
+
+<summary>🌸 Floral</summary>
+
+<div class="family-images">
+<img src="image22.png">
+<img src="image23.png">
+<img src="image24.png">
+</div>
+<p>🌸 Floral
+Soft, romantic, flower-based fragrances.
+Dior Poison – Oriental Floral
+Avroy Shlain Chalet Coppelia – Floral
+Chanel No.5 – Aldehydic Floral
+Coppelia – Floral
+Lady Million – Floral Fruity
+Elizabeth Arden Red Door – Rich Floral
+Paco Rabanne Lady Million – Floral Fruity
+Carolina Herrera Good Girl – Oriental Floral
+Lancôme La Vie Est Belle – Gourmand Flporal
+YSL Black Opium – Oriental Gourmand Floral</p>
+
+
+<a class="link-btn" href="products">products</a>
+
+</details>
+
+<details>
+
+<summary>🔥 Oriental</summary>
+
+<div class="family-images">
+<img src="image20.png">
+<img src="image26.png">
+<img src="image27.png">
+</div>
+<p>Oriental / Spicy / Amber
+Warm, deep, strong evening fragrances.
+Paco Rabanne One Million – Spicy Oriental
+Paco Rabanne Invictus – Fresh Oriental
+Tom Ford Oud Wood – Woody Oriental / Oud
+Dunhill Red – Spicy Woody
+Dunhill Black – Woody Oriental
+Ted Lapidus Pour Homme – Oriental / Spicy</p>
+
+
+<a class="link-btn" href="products">products</a>
+
+</details>
+
+<details>
+
+<summary>🍋 Citrus</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image24.png">
+<img src="image27.png">
+</div>
+
+<p>Fresh and uplifting:</p>
+
+<a class="link-btn" href="products">products</a>
+
+</details>
+
+<details>
+
+<summary>🌳 Woody</summary>
+
+<div class="family-images">
+<img src="image24.png">
+<img src="image26.png">
+<img src="image5.png">
+</div>
+<p>🌳 Woody / Aromatic / Green
+Earthy, masculine, natural scents.
+Black Axe – Woody Aromatic
+Belagari – Woody / Aromatic (varies by version)
+Hordelsol – Woody / Aromatic
+Creed Aventus – Fruity Chypre / Woody
+Tza – Woody / Spicy (varies)
+OPRHE – Woody / Aromatic
+Sheriff – Woody / Spicy
+PAN – Woody / Aromatic
+ANG – Woody
+DHL – Woody / Aromatic
+Aramis 900 – Woody Chypre
+Creed Aventus – Fruity Chypre / Woody</p>
+
+<a class="link-btn" href="products">products</a>
+
+</details>
+
+<details>
+
+<summary>💧 Fresh</summary>
+
+<div class="family-images">
+<img src="image24.png">
+<img src="image20.png">
+<img src="image26.png">
+</div>
+<p>Clean and aquatic:</p>
+
+
+<a class="link-btn" href="products">products</a>
+
+</details>
+
+<details>
+
+<summary>🧁 Gourmand</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image28.png">
+<img src="image20.png">
+</div>
+<p>🧁 Gourmand (Sweet / Dessert-like)
+La Vie Est Belle – Sweet Gourmand
+Black Opium – Coffee Vanilla Gourmand
+Lady Million – Sweet Floral Gourmand</p>
+
+<a class="link-btn" href="products">products</a>
+
+
+</details>
+
+
+<details>
+
+<summary>bulk buy</summary>
+
+<div class="bulk-images">
+<img src="50.png">
+<img src="51.png">
+<img src="52.png">
+</div>
+ 
+ <p> buy three 50ml Perfume for R450 in bulk</p>
+  
+<p>ten 50ml Perfume for R1 500 in bulk</p>
+
+<p>wenty 50ml Perfume for R 3 000</p>
+ <p>buy 50ml Perfume R 6 000 </p>
+
+
+<a class="buy-button" id="bulkWhatsApp" target="_blank"
+   href="https://wa.me/27656911520?text=Hello%20I%20want%20to%20buy%203x50ml%20for%20R450,%2010x50ml%20for%20R1500,%2020x50ml%20for%20R3000">
+   Info via WhatsApp
+</a>
+</details>
+
+
+<details>
+
+<summary> Referrals</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image28.png">
+<img src="image20.png">
+</div>
+<p> 🚨 TURN YOUR CONTACTS INTO CASH! 🚨
+
+With THUBALESHA Fragrance, you don’t need money to start.
+
+Just sign up, get your personal referral code, and earn R50 for EVERY sale made with your code.
+
+✔ No stock to buy
+✔ No delivery stress
+✔ No joining fee
+✔ Unlimited earning potential
+
+If 10 people buy using your code = R500 in your pocket 💵
+The more you share, the more you earn!
+
+This is your chance to build income from your phone 📱
+
+Sign up now and start earning with THUBALESHA!</p> 
+
+
+<a class="link-btn" href="signup">Sign Up</a>
+</details>
+
+</section>
+
+<section class="section fade" id="contact">
+
+<h2>Contact Us</h2>
+
+<p>📞 +27 65 691 1520</p>
+<p>💬 WhatsApp: +27 65 691 1520</p>
+<p>📧 admin@thubalesha.co.za</p>
+
+</section>
+
+<footer>
+
+<a href="terms.html">Terms</a> |
+<a href="privacy.html">Privacy</a> |
+<a href="refund.html">Refund</a> |
+<a href="shipping.html">Shipping</a> |
+<a href="about.html">About</a> |
+<a href="faq.html">FAQ</a>
+
+<p>© 2026 THUBALESHA Fragrance</p>
+
+</footer>
+
+<div id="cartPanel">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<p>Shipping: R<span id="shippingPrice">60</span></p>
+
+<h3>Total: R<span id="totalPrice">0</span></h3>
+
+<button class="buy-button" onclick="showCheckout()">Checkout</button>
+<button class="buy-button" onclick="closeCart()">Close</button>
+
+<hr>
+
+<div id="checkout" style="display:none">
+
+<h3>Delivery Details</h3>
+
+<input id="name" placeholder="Full Name">
+<input id="email" placeholder="Email">
+<input id="phone" placeholder="Phone">
+<input id="address" placeholder="Delivery Address">
+
+<input id="referral" placeholder="Referral Code (optional)">
+
+<select id="shippingSelect" onchange="changeShipping()">
+<option value="60">Standard Shipping R60</option>
+<option value="120">Express Shipping R120</option>
+</select>
+
+<button class="buy-button" onclick="sendOrder()">Send Order</button>
+
+
+<h3>Payment</h3>
+
+<a class="buy-button" href="https://pay.yoco.com/thubalesha-general-trading">Pay with YOCO</a>
+
+<a class="buy-button" href="https://www.paypal.com/ncp/payment/2QBAVWTMDFPFW">pay with paypal</a>
+
+
+
+<div style="margin-top:15px;background:#f7f7f7;padding:15px;border-radius:8px">
+
+<h4>EFT Payment</h4>
+
+<p><b>Bank:</b> TymeBank</p>
+<p><b>Account Number:</b> 5300 0064 836</p>
+<p><b>Account Type:</b> Current</p>
+<p><b>Branch Code:</b> 678910</p>
+<p><b>Reference:</b> Your Name + Order</p>
+
+<p style="margin-top:8px;font-size:14px;">
+After EFT please send proof of payment via WhatsApp
+</p>
+
+</div>
+
+<p style="margin-top:10px;">Support: 📞 065 691 1520</p>
+
+<a class="buy-button" id="whatsappOrder" target="_blank">Order via WhatsApp</a>
+ 
+</div>
+
+
+<a href="https://wa.me/27656911520" style="position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:14px 18px;border-radius:50px;text-decoration:none;font-weight:bold;">WhatsApp</a>
+
+<script>
+
+emailjs.init("0PazREzQtkxaCNEKN")
+
+let cart=[]
+let shipping=60
+
+function openCart(){
+document.getElementById("cartPanel").style.display="block"
+}
+
+function closeCart(){
+document.getElementById("cartPanel").style.display="none"
+}
+
+function addToCart(name,price){
+
+cart.push({name,price})
+
+updateCart()
+
+}
+
+function updateCart(){
+
+let items=document.getElementById("cartItems")
+items.innerHTML=""
+
+let total=0
+
+cart.forEach(p=>{
+items.innerHTML+=`<p>${p.name} - R${p.price}</p>`
+total+=p.price
+})
+
+total+=shipping
+
+document.getElementById("totalPrice").innerText=total
+document.getElementById("cartCount").innerText=cart.length
+document.getElementById("giftBar").value=total
+
+let orderText=cart.map(p=>p.name).join(", ")
+
+document.getElementById("whatsappOrder").href=
+"https://wa.me/27656911520?text=Hello I want to order: "+orderText+" Total R"+total
+
+}
+
+function changeShipping(){
+
+shipping=parseInt(document.getElementById("shippingSelect").value)
+document.getElementById("shippingPrice").innerText=shipping
+
+updateCart()
+
+}
+
+function showCheckout(){
+document.getElementById("checkout").style.display="block"
+}
+
+function sendOrder(){
+
+let order=cart.map(p=>p.name).join(",")
+
+emailjs.send("service_ijy8vdb","template_6ezz31q",{
+
+customer_name:document.getElementById("name").value,
+customer_email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+address:document.getElementById("address").value,
+order:order,
+referral:document.getElementById("referral").value,
+total:document.getElementById("totalPrice").innerText
+
+})
+
+alert("Thanks for your order! We will contact you soon.")
+
+}
+
+const fades=document.querySelectorAll('.fade');
+
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{
+if(e.isIntersecting){e.target.classList.add('show')}
+});
+},{threshold:.2});
+
+fades.forEach(f=>obs.observe(f));
+
+</script>
+
+</body>
+</html>
