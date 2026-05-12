@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THUBALESHA Earrings</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f8f4ef;color:#222}
+header{background:#000;color:#fff;padding:18px;text-align:center;position:sticky;top:0}
+header h1{font-size:28px}
+header p{color:#d4af37;margin-top:5px}
+#searchBar{width:90%;max-width:420px;display:block;margin:20px auto;padding:12px;border:1px solid #ccc;border-radius:10px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;padding:20px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.15);transition:0.3s}
+.card:hover{transform:translateY(-5px)}
+.card img{width:100%;height:230px;object-fit:cover}
+.info{padding:15px;text-align:center}
+.price{color:#d4af37;font-size:22px;font-weight:bold;margin:10px 0}
+button{background:#000;color:#fff;border:none;padding:10px 18px;border-radius:8px;cursor:pointer}
+button:hover{background:#d4af37;color:#000}
+#cart{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;padding:14px 18px;border-radius:50px;font-weight:bold}
+footer{background:#000;color:#fff;text-align:center;padding:15px;margin-top:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>THUBALESHA Earrings</h1>
+<p>Luxury Earrings Collection</p>
+</header>
+
+<input type="text" id="searchBar" placeholder="Search earrings..." onkeyup="searchProducts()">
+
+<div class="products" id="productList"></div>
+
+<div id="cart">🛒 Cart: <span id="cartCount">0</span></div>
+
+<footer>
+<p>THUBALESHA Luxury Accessories</p>
+<p>Secure Orders • Nationwide Delivery</p>
+</footer>
+
+<script>
+const products = [
+{name:"Golden Heart Earrings", image:"Hc50f34cfdeef441e952fd68d97c23c71Q_png.jpeg"},
+{name:"Diamond Shine Earrings", image:"Untitleddesign_6.png"},
+{name:"Luxury Hoop Earrings", image:"294E57FD-A794-4421-BE66-90BE32286FDD_6a581b1c-cd30-4b9e-8e51-56c48aaddde4.jpg"},
+{name:"Classic Silver Earrings", image:"9-2.png"},
+{name:"Royal Pearl Earrings", image:"CC421DEA-044B-49DD-A36E-2D3D15422804.png"},
+{name:"Elegant Crystal Earrings", image:"88260B6F-65A6-4150-8AB5-D7266EF1D770.png"},
+{name:"Luxury Drop Earrings", image:"E9094656-7A85-4F7E-A579-9D775C72DF29.png"},
+{name:"Premium Fashion Earrings", image:"ChatGPTImageApr21_2026at05_57_54AM.png"},
+{name:"Modern Gold Earrings", image:"ChatGPTImageApr21_2026at05_56_14AM.png"},
+{name:"Sparkle Earrings", image:"ChatGPTImageApr21_2026at05_54_07AM.png"},
+{name:"Elegant Luxury Earrings", image:"ChatGPTImageApr21_2026at05_52_08AM.png"}
+];
+
+let cart = 0;
+
+function loadProducts(list){
+const container = document.getElementById("productList");
+container.innerHTML = "";
+
+list.forEach(product=>{
+container.innerHTML += `
+<div class="card">
+<img src="${product.image}" alt="${product.name}">
+<div class="info">
+<h3>${product.name}</h3>
+<p class="price">R550</p>
+<button onclick="addToCart()">Buy Now</button>
+</div>
+</div>`;
+});
+}
+
+function addToCart(){
+cart++;
+document.getElementById("cartCount").innerText = cart;
+alert("Product added to cart!");
+}
+
+function searchProducts(){
+const value = document.getElementById("searchBar").value.toLowerCase();
+const filtered = products.filter(p=>p.name.toLowerCase().includes(value));
+loadProducts(filtered);
+}
+
+loadProducts(products);
+</script>
+
+</body>
+</html>
