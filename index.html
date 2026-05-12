@@ -202,14 +202,25 @@ transform:translateY(0);
 <a href="#families">Families</a>
 <a href="#contact">Contact</a>
 
+  <!-- PRODUCTS DROPDOWN -->
 
-<a class="link-btn" href="products">products</a>
-  <a class="link-btn" href="perfumes.html">perfumes</a>
- 
-<a class="link-btn" href="watches.html">watches</a>
- 
-<a class="link-btn" href="sunglass.html">sunglasses</a>
- <a class="link-btn" href="earings.html">earings</a>
+<div class="dropdown">
+
+<a class="link-btn dropdown-btn" href="#">
+Products ▼
+</a>
+
+<div class="dropdown-content">
+
+<a href="perfumes.html">Perfumes</a>
+
+<a href="watches.html">Watches</a>
+
+<a href="sunglass.html">Sunglasses</a>
+
+<a href="earings.html">Earings</a>
+
+</div>
 
 
 </nav>
@@ -621,7 +632,42 @@ if(e.isIntersecting){e.target.classList.add('show')}
 },{threshold:.2});
 
 fades.forEach(f=>obs.observe(f));
+/* DROPDOWN MENU */
 
+.dropdown{
+position:relative;
+display:inline-block;
+}
+
+.dropdown-content{
+display:none;
+position:absolute;
+background:#fff;
+min-width:220px;
+box-shadow:0 8px 20px rgba(0,0,0,.2);
+border-radius:10px;
+overflow:hidden;
+z-index:1000;
+top:110%;
+left:0;
+}
+
+.dropdown-content a{
+color:#000;
+padding:14px 18px;
+text-decoration:none;
+display:block;
+font-weight:bold;
+transition:.3s;
+}
+
+.dropdown-content a:hover{
+background:#f3f3f3;
+}
+
+.dropdown:hover .dropdown-content{
+display:block;
+  }
 </script>
 
 </body>
