@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THUBALESHA Sunglasses</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    margin:0;
+    background:#f5f5f5;
+}
+
+header{
+    background:#000;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+}
+
+header h1{
+    margin:0;
+    color:gold;
+}
+
+.search-box{
+    text-align:center;
+    margin:20px;
+}
+
+.search-box input{
+    width:90%;
+    max-width:400px;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.price{
+    color:green;
+    font-size:22px;
+    font-weight:bold;
+}
+
+button{
+    background:#000;
+    color:#fff;
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:gold;
+    color:#000;
+}
+
+footer{
+    background:#000;
+    color:#fff;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <h1>THUBALESHA Sunglasses</h1>
+    <p>Luxury Sunglasses Collection</p>
+</header>
+
+<div class="search-box">
+    <input type="text" id="search" placeholder="Search sunglasses..." onkeyup="searchProducts()">
+</div>
+
+<div class="products" id="products">
+
+    <div class="card">
+        <img src="5_afc925e4-19ad-4aae-9fcf-3cbfcd4a4bf0.png" alt="5 afc925e4 19ad 4aae 9fcf 3cbfcd4a4bf0">
+        <h3>THUBALESHA Sunglasses 1</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 1')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="C311537F-A813-4612-9216-C65D25805F5D.png" alt="C311537F A813 4612 9216 C65D25805F5D">
+        <h3>THUBALESHA Sunglasses 2</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 2')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="chichi.leopard.png" alt="chichi.leopard">
+        <h3>THUBALESHA Sunglasses 3</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 3')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="20AF22BE-0343-4057-A7DE-CD46336DD88B.png" alt="20AF22BE 0343 4057 A7DE CD46336DD88B">
+        <h3>THUBALESHA Sunglasses 4</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 4')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="maya_plaid.png" alt="maya plaid">
+        <h3>THUBALESHA Sunglasses 5</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 5')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="9_c7f90cbf-3390-48d1-a715-acb70bb84df5.png" alt="9 c7f90cbf 3390 48d1 a715 acb70bb84df5">
+        <h3>THUBALESHA Sunglasses 6</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 6')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="21_ae9f213c-8479-40df-97dd-e14f56d7596c.png" alt="21 ae9f213c 8479 40df 97dd e14f56d7596c">
+        <h3>THUBALESHA Sunglasses 7</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 7')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="tammyclear.png" alt="tammyclear">
+        <h3>THUBALESHA Sunglasses 8</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 8')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="6_9c0f0450-0488-41a4-9b3b-9bc6a437b411.png" alt="6 9c0f0450 0488 41a4 9b3b 9bc6a437b411">
+        <h3>THUBALESHA Sunglasses 9</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 9')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="teniegg.png" alt="teniegg">
+        <h3>THUBALESHA Sunglasses 10</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 10')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="ibizasmokey.png" alt="ibizasmokey">
+        <h3>THUBALESHA Sunglasses 11</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 11')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="wayfaarer_u.png" alt="wayfaarer u">
+        <h3>THUBALESHA Sunglasses 12</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 12')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="bello_u.png" alt="bello u">
+        <h3>THUBALESHA Sunglasses 13</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 13')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="reem_u.png" alt="reem u">
+        <h3>THUBALESHA Sunglasses 14</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 14')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="hex_u.png" alt="hex u">
+        <h3>THUBALESHA Sunglasses 15</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 15')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="ola2.png" alt="ola2">
+        <h3>THUBALESHA Sunglasses 16</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 16')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="amata.png" alt="amata">
+        <h3>THUBALESHA Sunglasses 17</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 17')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="792C760E-711E-4096-8DB8-5669801C6B33.jpg" alt="792C760E 711E 4096 8DB8 5669801C6B33">
+        <h3>THUBALESHA Sunglasses 18</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 18')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="68A84576-60D8-4CD9-BE89-402123522DFF.jpg" alt="68A84576 60D8 4CD9 BE89 402123522DFF">
+        <h3>THUBALESHA Sunglasses 19</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 19')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="C763EBC2-42B9-4F13-A5B1-E16F04F948DB.jpg" alt="C763EBC2 42B9 4F13 A5B1 E16F04F948DB">
+        <h3>THUBALESHA Sunglasses 20</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 20')">Buy Now</button>
+    </div>
+    
+    <div class="card">
+        <img src="73B25A03-BCE8-4A51-A401-F8AF07937AC1_L0_001-13_10_2023_21_54_00.jpg" alt="73B25A03 BCE8 4A51 A401 F8AF07937AC1 L0 001 13 10 2023 21 54 00">
+        <h3>THUBALESHA Sunglasses 21</h3>
+        <p class="price">R550</p>
+        <button onclick="buyNow('THUBALESHA Sunglasses 21')">Buy Now</button>
+    </div>
+    
+</div>
+
+<footer>
+    THUBALESHA Sunglasses © 2026
+</footer>
+
+<script>
+function buyNow(product){
+    let phone = "27787102337";
+    let msg = encodeURIComponent("Hello, I want to order " + product + " for R550");
+    window.open("https://wa.me/" + phone + "?text=" + msg, "_blank");
+}
+
+function searchProducts(){
+    let input = document.getElementById("search").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+        card.style.display = text.includes(input) ? "block" : "none";
+    });
+}
+</script>
+
+</body>
+</html>
