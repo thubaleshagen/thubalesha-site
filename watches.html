@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THUBALESHA Watches</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#111;
+}
+
+header{
+  background:#000;
+  color:#fff;
+  padding:18px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+header h1{
+  color:#d4af37;
+}
+
+.cart-btn{
+  margin-top:10px;
+  padding:10px 18px;
+  border:none;
+  background:#d4af37;
+  color:#000;
+  font-weight:bold;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+#searchBar{
+  width:90%;
+  max-width:450px;
+  display:block;
+  margin:20px auto;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  padding:20px;
+}
+
+.card{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+}
+
+.card img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:15px;
+  text-align:center;
+}
+
+.price{
+  color:#d4af37;
+  font-size:22px;
+  margin:10px 0;
+  font-weight:bold;
+}
+
+.buy-btn{
+  background:#000;
+  color:#fff;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  cursor:pointer;
+  width:100%;
+}
+
+.buy-btn:hover{
+  background:#222;
+}
+
+#cartPanel{
+  position:fixed;
+  right:-400px;
+  top:0;
+  width:350px;
+  height:100%;
+  background:#fff;
+  box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+  padding:20px;
+  transition:0.4s;
+  overflow:auto;
+  z-index:2000;
+}
+
+#cartPanel.active{
+  right:0;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.checkout-btn{
+  display:block;
+  width:100%;
+  padding:12px;
+  background:#25D366;
+  color:#fff;
+  text-align:center;
+  border-radius:8px;
+  text-decoration:none;
+  margin-top:15px;
+  font-weight:bold;
+}
+
+footer{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>THUBALESHA Watches</h1>
+  <p>Luxury Watches Collection</p>
+  <button class="cart-btn" onclick="toggleCart()">
+    Cart (<span id="cartCount">0</span>)
+  </button>
+</header>
+
+<input type="text" id="searchBar" placeholder="Search watches..." onkeyup="searchProducts()">
+
+<div class="products" id="productList">
+
+  <div class="card">
+    <img src="188F383D-CD53-46B3-BAFB-D1836627F98A.jpg">
+    <div class="card-content">
+      <h3>THUBALESHA Gold Watch</h3>
+      <div class="price">R1550</div>
+      <button class="buy-btn" onclick="addToCart('THUBALESHA Gold Watch',1550)">Buy Now</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="s-l1600.jpeg">
+    <div class="card-content">
+      <h3>Luxury Silver Watch</h3>
+      <div class="price">R1550</div>
+      <button class="buy-btn" onclick="addToCart('Luxury Silver Watch',1550)">Buy Now</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="IMG-3329.png">
+    <div class="card-content">
+      <h3>Classic Black Watch</h3>
+      <div class="price">R1550</div>
+      <button class="buy-btn" onclick="addToCart('Classic Black Watch',1550)">Buy Now</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <img src="33B61A55-E825-4936-B723-BAE267B5FA25.jpg">
+    <div class="card-content">
+      <h3>Premium Watch Edition</h3>
+      <div class="price">R1550</div>
+      <button class="buy-btn" onclick="addToCart('Premium Watch Edition',1550)">Buy Now</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="cartPanel">
+  <h2>Your Cart</h2>
+  <div id="cartItems"></div>
+  <h3>Total: R<span id="total">0</span></h3>
+
+  <a class="checkout-btn" id="checkoutBtn" target="_blank">
+    Checkout on WhatsApp
+  </a>
+
+  <button class="buy-btn" onclick="toggleCart()" style="margin-top:10px;">Close</button>
+</div>
+
+<footer>
+  <p>© 2026 THUBALESHA Watches</p>
+</footer>
+
+<script>
+let cart = [];
+
+function addToCart(name, price){
+  cart.push({name, price});
+  updateCart();
+  alert(name + " added to cart");
+}
+
+function updateCart(){
+  const cartItems = document.getElementById("cartItems");
+  const totalEl = document.getElementById("total");
+  const cartCount = document.getElementById("cartCount");
+
+  cartItems.innerHTML = "";
+
+  let total = 0;
+
+  cart.forEach((item, index)=>{
+    total += item.price;
+
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <span>${item.name}</span>
+        <span>R${item.price}</span>
+      </div>
+    `;
+  });
+
+  totalEl.innerText = total;
+  cartCount.innerText = cart.length;
+
+  const message = encodeURIComponent(
+    "Hello THUBALESHA, I want to order:\n\n" +
+    cart.map(i => `${i.name} - R${i.price}`).join("\n") +
+    `\n\nTotal: R${total}`
+  );
+
+  document.getElementById("checkoutBtn").href =
+    "https://wa.me/27787102337?text=" + message;
+}
+
+function toggleCart(){
+  document.getElementById("cartPanel").classList.toggle("active");
+}
+
+function searchProducts(){
+  let input = document.getElementById("searchBar").value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card=>{
+    let text = card.innerText.toLowerCase();
+    card.style.display = text.includes(input) ? "block" : "none";
+  });
+}
+</script>
+
+</body>
+</html>
