@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THUBALESHA Fragrance</title>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#fffaf5;
+color:#2c2c2c;
+line-height:1.6;
+}
+
+/* HEADER */
+
+header{
+background:#000;
+padding:1.5rem;
+text-align:center;
+color:#fff;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+header img{
+max-width:280px;
+width:100%;
+}
+
+nav{
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+
+nav a{
+color:#fff;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* BUTTONS */
+
+.link-btn,
+.buy-button{
+display:inline-block;
+background:#d4af37;
+color:#000;
+padding:.7rem 1.2rem;
+border-radius:8px;
+cursor:pointer;
+text-decoration:none;
+font-weight:bold;
+border:none;
+transition:.3s;
+}
+
+.link-btn:hover,
+.buy-button:hover{
+transform:translateY(-2px);
+opacity:.9;
+}
+
+.buy-button{
+background:#000;
+color:#fff;
+margin-top:15px;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+position:relative;
+display:inline-block;
+}
+
+.dropdown-content{
+display:none;
+position:absolute;
+background:#fff;
+min-width:220px;
+box-shadow:0 8px 20px rgba(0,0,0,.2);
+border-radius:10px;
+overflow:hidden;
+z-index:1000;
+top:110%;
+left:0;
+}
+
+.dropdown-content a{
+color:#000;
+padding:14px 18px;
+text-decoration:none;
+display:block;
+font-weight:bold;
+}
+
+.dropdown-content a:hover{
+background:#f2f2f2;
+}
+
+.dropdown:hover .dropdown-content{
+display:block;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+padding:120px 20px;
+text-align:center;
+overflow:hidden;
+min-height:70vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.hero video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-1;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.35);
+}
+
+.hero img,
+.hero p{
+position:relative;
+z-index:2;
+}
+
+.hero img{
+width:85%;
+max-width:380px;
+border-radius:14px;
+}
+
+.tagline{
+margin-top:20px;
+background:rgba(0,0,0,.55);
+color:#fff;
+display:inline-block;
+padding:.8rem 1.3rem;
+border-radius:10px;
+font-size:1.1rem;
+}
+
+/* SECTIONS */
+
+.section{
+padding:4rem 1rem;
+text-align:center;
+}
+
+.section h2{
+margin-bottom:20px;
+font-size:2rem;
+}
+
+/* DETAILS */
+
+details{
+max-width:760px;
+margin:30px auto;
+background:#fff;
+padding:1.8rem;
+border-radius:20px;
+box-shadow:0 6px 20px rgba(0,0,0,.12);
+}
+
+summary{
+font-size:1.4rem;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+/* PRODUCT IMAGES */
+
+.family-images,
+.bulk-images{
+display:flex;
+gap:12px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:16px;
+margin-bottom:16px;
+}
+
+.family-images img,
+.bulk-images img{
+width:110px;
+height:130px;
+object-fit:cover;
+border-radius:14px;
+box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+/* CART */
+
+#cartPanel{
+position:fixed;
+right:0;
+top:0;
+width:340px;
+max-width:100%;
+height:100%;
+background:white;
+box-shadow:-4px 0 15px rgba(0,0,0,.3);
+padding:20px;
+display:none;
+overflow:auto;
+z-index:9999;
+}
+
+input,
+select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:1px solid #ddd;
+border-radius:8px;
+}
+
+/* GIFT BOX */
+
+#giftBox{
+background:white;
+padding:20px;
+margin:20px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+/* FOOTER */
+
+footer{
+background:#333;
+color:#fff;
+padding:2rem 1rem;
+text-align:center;
+}
+
+footer a{
+color:#d4af37;
+text-decoration:none;
+margin:0 5px;
+}
+
+/* ANIMATION */
+
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all .9s ease;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero{
+padding:100px 15px;
+}
+
+.hero img{
+width:95%;
+}
+
+nav{
+gap:8px;
+}
+
+.link-btn,
+.buy-button{
+font-size:14px;
+padding:.6rem 1rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<img src="logo2.png" alt="THUBALESHA Logo">
+
+<nav>
+
+<a href="#home">Home</a>
+<a href="#families">Families</a>
+<a href="#contact">Contact</a>
+
+<div class="dropdown">
+
+<a class="link-btn" href="#">Products ▼</a>
+
+<div class="dropdown-content">
+<a href="perfumes.html">Perfumes</a>
+<a href="watches.html">Watches</a>
+<a href="sunglass.html">Sunglasses</a>
+<a href="earings.html">Earrings</a>
+</div>
+
+</div>
+
+<a class="link-btn" onclick="openCart()">
+Cart (<span id="cartCount">0</span>)
+</a>
+
+</nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero fade" id="home">
+
+<video autoplay loop muted playsinline>
+<source src="aaamaybe.mp4" type="video/mp4">
+</video>
+
+<img src="GIF-1.gif" alt="THUBALESHA Fragrance">
+
+<p class="tagline">
+A scent that lingers in their memory
+</p>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section fade">
+
+<h2>About THUBALESHA</h2>
+
+<p style="max-width:700px;margin:auto;">
+THUBALESHA Fragrance presents a curated collection of fragrance families crafted to express mood, confidence and lifestyle.
+</p>
+
+</section>
+
+<!-- GIFT -->
+
+<section id="giftBox">
+
+<h3>Spend R750 Get a FREE Gift 🎁</h3>
+
+<progress id="giftBar" value="0" max="1000" style="width:100%;height:20px;"></progress>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="section fade" id="families">
+
+<h2>Fragrance Families</h2>
+
+<!-- Floral -->
+
+<details open>
+
+<summary>🌸 Floral</summary>
+
+<div class="family-images">
+<img src="image22.png">
+<img src="image23.png">
+<img src="image24.png">
+</div>
+
+<p>
+Soft romantic flower-based fragrances including Dior Poison,
+Chanel No.5, Lady Million, Good Girl and Black Opium.
+</p>
+
+<a class="link-btn" href="Perfumes.html">View Perfumes</a>
+
+
+</details>
+
+<!-- Oriental -->
+
+<details>
+
+<summary>🔥 Oriental</summary>
+
+<div class="family-images">
+<img src="image20.png">
+<img src="image26.png">
+<img src="image27.png">
+</div>
+
+<p>
+Warm deep spicy evening fragrances including One Million,
+Invictus, Oud Wood and Dunhill Black.
+</p>
+
+<a class="link-btn" href="Perfumes.html">View Perfumes</a>
+
+</details>
+
+<!-- Citrus -->
+
+<details>
+
+<summary>🍋 Citrus</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image24.png">
+<img src="image27.png">
+</div>
+
+<p>
+Fresh uplifting energetic fragrances perfect for daytime wear.
+</p>
+
+<a class="link-btn" href="Perfumes.html">View Perfumes</a>
+
+
+
+</details>
+
+<!-- Woody -->
+
+<details>
+
+<summary>🌳 Woody</summary>
+
+<div class="family-images">
+<img src="image24.png">
+<img src="image26.png">
+<img src="image5.png">
+</div>
+
+<p>
+Earthy masculine woody fragrances including Creed Aventus,
+Aramis and Sheriff.
+</p>
+<a class="link-btn" href="Perfumes.html">View Perfumes</a>
+
+
+</details>
+
+<!-- Watches -->
+
+<details>
+
+<summary>⌚ Watches</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image28.png">
+<img src="image20.png">
+</div>
+
+<p>Luxury watches collection.</p>
+
+<a class="link-btn" href="watches.html">View Watches</a>
+
+</details>
+
+<!-- Sunglasses -->
+
+<details>
+
+<summary>🕶 Sunglasses</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image28.png">
+<img src="image20.png">
+</div>
+
+<p>Luxury sunglasses collection.</p>
+
+<a class="link-btn" href="sunglass.html">View Sunglasses</a>
+
+</details>
+
+<!-- Earrings -->
+
+<details>
+
+<summary>💎 Earrings</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image28.png">
+<img src="image20.png">
+</div>
+
+<p>Elegant earrings collection.</p>
+
+<a class="link-btn" href="earings.html">View Earrings</a>
+
+</details>
+
+<!-- Bulk -->
+
+<details>
+
+<summary>📦 Bulk Buy</summary>
+
+<div class="bulk-images">
+<img src="50.png">
+<img src="51.png">
+<img src="52.png">
+</div>
+
+<p>3 x 50ml Perfumes = R450</p>
+<p>10 x 50ml Perfumes = R1 500</p>
+<p>20 x 50ml Perfumes = R3 000</p>
+<p>50 x 50ml Perfumes = R6 000</p>
+
+<a class="buy-button"
+target="_blank"
+href="https://wa.me/27656911520?text=Hello%20I%20want%20bulk%20perfumes">
+Info via WhatsApp
+</a>
+
+</details>
+
+<!-- Referrals -->
+
+<details>
+
+<summary>💸 Referrals</summary>
+
+<div class="family-images">
+<img src="image5.png">
+<img src="image28.png">
+<img src="image20.png">
+</div>
+
+<p>
+Earn R50 for every sale made using your referral code.
+No joining fee. No stock needed. Unlimited earning potential.
+</p>
+
+<a class="link-btn" href="signup.html">
+Sign Up
+</a>
+
+</details>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="section fade" id="contact">
+
+<h2>Contact Us</h2>
+
+<p>📞 +27 16 989 1005</p>
+<p>📱 +27 65 691 1520</p>
+<p>💬 WhatsApp: +27 65 691 1520</p>
+<p>📧 admin@thubalesha.co.za</p>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<a href="terms.html">Terms</a> |
+<a href="privacy.html">Privacy</a> |
+<a href="refund.html">Refund</a> |
+<a href="shipping.html">Shipping</a> |
+<a href="about.html">About</a> |
+<a href="faq.html">FAQ</a>
+
+<p style="margin-top:15px;">
+© 2026 THUBALESHA Fragrance
+</p>
+
+</footer>
+
+<!-- CART -->
+
+<div id="cartPanel">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<p style="margin-top:15px;">
+Shipping: R<span id="shippingPrice">60</span>
+</p>
+
+<h3 style="margin-top:10px;">
+Total: R<span id="totalPrice">0</span>
+</h3>
+
+<button class="buy-button" onclick="showCheckout()">
+Checkout
+</button>
+
+<button class="buy-button" onclick="closeCart()">
+Close
+</button>
+
+<hr style="margin:20px 0;">
+
+<div id="checkout" style="display:none;">
+
+<h3>Delivery Details</h3>
+
+<input id="name" placeholder="Full Name">
+<input id="email" placeholder="Email">
+<input id="phone" placeholder="Phone">
+<input id="address" placeholder="Delivery Address">
+<input id="referral" placeholder="Referral Code (optional)">
+
+<select id="shippingSelect" onchange="changeShipping()">
+<option value="60">Standard Shipping R60</option>
+<option value="120">Express Shipping R120</option>
+</select>
+
+<button class="buy-button" onclick="sendOrder()">
+Send Order
+</button>
+
+<h3 style="margin-top:20px;">Payment</h3>
+
+<a class="buy-button"
+href="https://pay.yoco.com/thubalesha-general-trading"
+target="_blank">
+Pay with YOCO
+</a>
+
+<a class="buy-button"
+href="https://www.paypal.com/ncp/payment/2QBAVWTMDFPFW"
+target="_blank">
+Pay with PayPal
+</a>
+
+<div style="margin-top:15px;background:#f7f7f7;padding:15px;border-radius:8px">
+
+<h4>EFT Payment</h4>
+
+<p><b>Bank:</b> TymeBank</p>
+<p><b>Account Number:</b> 5300 0064 836</p>
+<p><b>Account Type:</b> Current</p>
+<p><b>Branch Code:</b> 678910</p>
+<p><b>Reference:</b> Your Name + Order</p>
+
+<p style="margin-top:8px;font-size:14px;">
+After EFT please send proof of payment via WhatsApp.
+</p>
+
+</div>
+
+<p style="margin-top:15px;">
+Support: 📞 065 691 1520
+</p>
+
+<a class="buy-button"
+id="whatsappOrder"
+target="_blank">
+Order via WhatsApp
+</a>
+
+</div>
+
+</div>
+
+<!-- FLOATING WHATSAPP -->
+
+<a href="https://wa.me/27656911520"
+target="_blank"
+style="
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:14px 18px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+z-index:9999;
+">
+WhatsApp
+</a>
+
+<!-- SCRIPT -->
+
+<script>
+
+emailjs.init("0PazREzQtkxaCNEKN")
+
+let cart=[]
+let shipping=60
+
+function openCart(){
+document.getElementById("cartPanel").style.display="block"
+}
+
+function closeCart(){
+document.getElementById("cartPanel").style.display="none"
+}
+
+function addToCart(name,price){
+
+cart.push({name,price})
+
+updateCart()
+openCart()
+
+}
+
+function updateCart(){
+
+let items=document.getElementById("cartItems")
+items.innerHTML=""
+
+let total=0
+
+cart.forEach((p,index)=>{
+
+items.innerHTML+=`
+<div style="margin-bottom:10px;padding:10px;background:#f5f5f5;border-radius:8px;">
+${p.name} - R${p.price}
+</div>
+`
+
+total+=p.price
+
+})
+
+total+=shipping
+
+document.getElementById("totalPrice").innerText=total
+document.getElementById("cartCount").innerText=cart.length
+document.getElementById("giftBar").value=total
+
+let orderText=cart.map(p=>p.name).join(", ")
+
+document.getElementById("whatsappOrder").href=
+"https://wa.me/27656911520?text=Hello I want to order: "
++encodeURIComponent(orderText)+
+"%20Total%20R"+total
+
+}
+
+function changeShipping(){
+
+shipping=parseInt(
+document.getElementById("shippingSelect").value
+)
+
+document.getElementById("shippingPrice").innerText=shipping
+
+updateCart()
+
+}
+
+function showCheckout(){
+
+document.getElementById("checkout").style.display="block"
+
+}
+
+function sendOrder(){
+
+let order=cart.map(p=>p.name).join(",")
+
+emailjs.send(
+"service_ijy8vdb",
+"template_6ezz31q",
+{
+customer_name:document.getElementById("name").value,
+customer_email:document.getElementById("email").value,
+phone:document.getElementById("phone").value,
+address:document.getElementById("address").value,
+order:order,
+referral:document.getElementById("referral").value,
+total:document.getElementById("totalPrice").innerText
+}
+)
+
+.then(function(){
+
+alert("Thanks for your order! We will contact you soon.")
+
+})
+.catch(function(error){
+
+alert("Order failed. Please try again.")
+
+})
+
+}
+
+const fades=document.querySelectorAll('.fade')
+
+const obs=new IntersectionObserver(entries=>{
+
+entries.forEach(e=>{
+
+if(e.isIntersecting){
+
+e.target.classList.add('show')
+
+}
+
+})
+
+},{threshold:.2})
+
+fades.forEach(f=>obs.observe(f))
+
+</script>
+
+</body>
+</html>
