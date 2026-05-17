@@ -1,283 +1,790 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>THUBALESHA Sunglasses</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
-    font-family:Arial,sans-serif;
-    margin:0;
-    background:#f5f5f5;
+font-family:Arial,sans-serif;
+background:#f5f5f5;
 }
 
 header{
-    background:#000;
-    color:#fff;
-    text-align:center;
-    padding:20px;
+background:#000;
+color:#fff;
+text-align:center;
+padding:20px;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
 header h1{
-    margin:0;
-    color:gold;
+margin:0;
+color:gold;
+}
+
+.cart-btn{
+margin-top:12px;
+padding:10px 18px;
+background:gold;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
 }
 
 .search-box{
-    text-align:center;
-    margin:20px;
+text-align:center;
+margin:20px;
 }
 
 .search-box input{
-    width:90%;
-    max-width:400px;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #ccc;
+width:90%;
+max-width:400px;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+#giftBox{
+text-align:center;
+padding:15px;
+}
+
+.gift-track{
+width:90%;
+height:20px;
+background:#ddd;
+margin:10px auto;
+border-radius:20px;
+overflow:hidden;
+}
+
+#giftFill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,gold,#ffd700);
+transition:0.4s;
 }
 
 .products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-    padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
 }
 
 .card{
-    background:#fff;
-    border-radius:15px;
-    padding:15px;
-    text-align:center;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-    transition:0.3s;
+background:#fff;
+border-radius:15px;
+padding:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:0.3s;
 }
 
 .card:hover{
-    transform:translateY(-5px);
+transform:translateY(-5px);
 }
 
 .card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:12px;
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:12px;
 }
 
 .price{
-    color:green;
-    font-size:22px;
-    font-weight:bold;
+color:green;
+font-size:22px;
+font-weight:bold;
+margin:10px 0;
 }
 
 button{
-    background:#000;
-    color:#fff;
-    border:none;
-    padding:10px 16px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:16px;
+background:#000;
+color:#fff;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
 }
 
 button:hover{
-    background:gold;
-    color:#000;
+background:gold;
+color:#000;
+}
+
+#cartPanel{
+position:fixed;
+right:-400px;
+top:0;
+width:350px;
+height:100%;
+background:#fff;
+padding:20px;
+overflow:auto;
+transition:0.4s;
+z-index:2000;
+box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+}
+
+#cartPanel.active{
+right:0;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+.qty button{
+padding:3px 8px;
+}
+
+.pay-btn{
+display:block;
+width:100%;
+padding:12px;
+margin-top:12px;
+background:#000;
+color:#fff;
+border-radius:8px;
+text-align:center;
+text-decoration:none;
+font-weight:bold;
+border:none;
+cursor:pointer;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+#checkout{
+display:none;
+margin-top:15px;
 }
 
 footer{
-    background:#000;
-    color:#fff;
-    text-align:center;
-    padding:15px;
-    margin-top:20px;
+background:#000;
+color:#fff;
+text-align:center;
+padding:15px;
+margin-top:20px;
 }
+
 </style>
 
 </head>
+
 <body>
 
 <header>
-    <h1>THUBALESHA Sunglasses</h1>
-    <p>Luxury Sunglasses Collection</p>
+
+<h1>THUBALESHA Sunglasses</h1>
+
+<p>Luxury Sunglasses Collection</p>
+
+<button class="cart-btn" onclick="toggleCart()">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+
 </header>
 
 <div class="search-box">
-    <input type="text" id="search" placeholder="Search sunglasses..." onkeyup="searchProducts()">
+
+<input
+type="text"
+id="search"
+placeholder="Search sunglasses..."
+onkeyup="searchProducts()"
+>
+
+</div>
+
+<div id="giftBox">
+
+<h4>🎁 Free Gift At R1500</h4>
+
+<div class="gift-track">
+<div id="giftFill"></div>
+</div>
+
+<p id="giftText">
+Add items to unlock
+</p>
+
 </div>
 
 <div class="products" id="products">
 
-    <div class="card">
-        <img src="5_afc925e4-19ad-4aae-9fcf-3cbfcd4a4bf0.png" alt="5 afc925e4 19ad 4aae 9fcf 3cbfcd4a4bf0">
-        <h3>THUBALESHA Sunglasses 1</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 1')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="C311537F-A813-4612-9216-C65D25805F5D.png" alt="C311537F A813 4612 9216 C65D25805F5D">
-        <h3>THUBALESHA Sunglasses 2</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 2')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="chichi.leopard.png" alt="chichi.leopard">
-        <h3>THUBALESHA Sunglasses 3</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 3')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="20AF22BE-0343-4057-A7DE-CD46336DD88B.png" alt="20AF22BE 0343 4057 A7DE CD46336DD88B">
-        <h3>THUBALESHA Sunglasses 4</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 4')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="maya_plaid.png" alt="maya plaid">
-        <h3>THUBALESHA Sunglasses 5</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 5')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="9_c7f90cbf-3390-48d1-a715-acb70bb84df5.png" alt="9 c7f90cbf 3390 48d1 a715 acb70bb84df5">
-        <h3>THUBALESHA Sunglasses 6</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 6')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="21_ae9f213c-8479-40df-97dd-e14f56d7596c.png" alt="21 ae9f213c 8479 40df 97dd e14f56d7596c">
-        <h3>THUBALESHA Sunglasses 7</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 7')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="tammyclear.png" alt="tammyclear">
-        <h3>THUBALESHA Sunglasses 8</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 8')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="6_9c0f0450-0488-41a4-9b3b-9bc6a437b411.png" alt="6 9c0f0450 0488 41a4 9b3b 9bc6a437b411">
-        <h3>THUBALESHA Sunglasses 9</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 9')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="teniegg.png" alt="teniegg">
-        <h3>THUBALESHA Sunglasses 10</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 10')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="ibizasmokey.png" alt="ibizasmokey">
-        <h3>THUBALESHA Sunglasses 11</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 11')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="wayfaarer_u.png" alt="wayfaarer u">
-        <h3>THUBALESHA Sunglasses 12</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 12')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="bello_u.png" alt="bello u">
-        <h3>THUBALESHA Sunglasses 13</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 13')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="reem_u.png" alt="reem u">
-        <h3>THUBALESHA Sunglasses 14</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 14')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="hex_u.png" alt="hex u">
-        <h3>THUBALESHA Sunglasses 15</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 15')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="ola2.png" alt="ola2">
-        <h3>THUBALESHA Sunglasses 16</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 16')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="amata.png" alt="amata">
-        <h3>THUBALESHA Sunglasses 17</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 17')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="792C760E-711E-4096-8DB8-5669801C6B33.jpg" alt="792C760E 711E 4096 8DB8 5669801C6B33">
-        <h3>THUBALESHA Sunglasses 18</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 18')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="68A84576-60D8-4CD9-BE89-402123522DFF.jpg" alt="68A84576 60D8 4CD9 BE89 402123522DFF">
-        <h3>THUBALESHA Sunglasses 19</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 19')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="C763EBC2-42B9-4F13-A5B1-E16F04F948DB.jpg" alt="C763EBC2 42B9 4F13 A5B1 E16F04F948DB">
-        <h3>THUBALESHA Sunglasses 20</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 20')">Buy Now</button>
-    </div>
-    
-    <div class="card">
-        <img src="73B25A03-BCE8-4A51-A401-F8AF07937AC1_L0_001-13_10_2023_21_54_00.jpg" alt="73B25A03 BCE8 4A51 A401 F8AF07937AC1 L0 001 13 10 2023 21 54 00">
-        <h3>THUBALESHA Sunglasses 21</h3>
-        <p class="price">R550</p>
-        <button onclick="buyNow('THUBALESHA Sunglasses 21')">Buy Now</button>
-    </div>
-    
+<div class="card">
+<img src="5_afc925e4-19ad-4aae-9fcf-3cbfcd4a4bf0.png">
+<h3>THUBALESHA Sunglasses 1</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 1',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="C311537F-A813-4612-9216-C65D25805F5D.png">
+<h3>THUBALESHA Sunglasses 2</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 2',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="chichi.leopard.png">
+<h3>THUBALESHA Sunglasses 3</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 3',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="20AF22BE-0343-4057-A7DE-CD46336DD88B.png">
+<h3>THUBALESHA Sunglasses 4</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 4',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="maya_plaid.png">
+<h3>THUBALESHA Sunglasses 5</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 5',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="9_c7f90cbf-3390-48d1-a715-acb70bb84df5.png">
+<h3>THUBALESHA Sunglasses 6</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 6',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="21_ae9f213c-8479-40df-97dd-e14f56d7596c.png">
+<h3>THUBALESHA Sunglasses 7</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 7',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="tammyclear.png">
+<h3>THUBALESHA Sunglasses 8</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 8',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="6_9c0f0450-0488-41a4-9b3b-9bc6a437b411.png">
+<h3>THUBALESHA Sunglasses 9</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 9',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="teniegg.png">
+<h3>THUBALESHA Sunglasses 10</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 10',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="ibizasmokey.png">
+<h3>THUBALESHA Sunglasses 11</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 11',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="wayfaarer_u.png">
+<h3>THUBALESHA Sunglasses 12</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 12',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="bello_u.png">
+<h3>THUBALESHA Sunglasses 13</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 13',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="reem_u.png">
+<h3>THUBALESHA Sunglasses 14</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 14',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="hex_u.png">
+<h3>THUBALESHA Sunglasses 15</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 15',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="ola2.png">
+<h3>THUBALESHA Sunglasses 16</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 16',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="amata.png">
+<h3>THUBALESHA Sunglasses 17</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 17',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="792C760E-711E-4096-8DB8-5669801C6B33.jpg">
+<h3>THUBALESHA Sunglasses 18</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 18',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="68A84576-60D8-4CD9-BE89-402123522DFF.jpg">
+<h3>THUBALESHA Sunglasses 19</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 19',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="C763EBC2-42B9-4F13-A5B1-E16F04F948DB.jpg">
+<h3>THUBALESHA Sunglasses 20</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 20',550)">
+Buy Now
+</button>
+</div>
+
+<div class="card">
+<img src="73B25A03-BCE8-4A51-A401-F8AF07937AC1_L0_001-13_10_2023_21_54_00.jpg">
+<h3>THUBALESHA Sunglasses 21</h3>
+<p class="price">R550</p>
+<button onclick="addToCart('THUBALESHA Sunglasses 21',550)">
+Buy Now
+</button>
+</div>
+
+</div>
+
+<!-- CART -->
+
+<div id="cartPanel">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<h3>Total: R<span id="total">0</span></h3>
+
+<button class="pay-btn" onclick="showCheckout()">
+Checkout
+</button>
+
+<button class="pay-btn" onclick="toggleCart()">
+Close
+</button>
+
+<div id="checkout">
+
+<h3>Delivery Details</h3>
+
+<input id="name" placeholder="Full Name">
+
+<input id="phone" placeholder="Phone Number">
+
+<input id="address" placeholder="Delivery Address">
+
+<input id="referral" placeholder="Referral Code Optional">
+
+<select id="deliveryOption" onchange="changeDelivery()">
+<option value="60">Local Delivery R60</option>
+<option value="120">Nationwide Delivery R120</option>
+</select>
+
+<button class="pay-btn" onclick="placeOrder()">
+💳 Pay With Yoco
+</button>
+
+<a
+class="pay-btn"
+href="https://www.paypal.com/ncp/payment/2QBAVWTMDFPFW"
+target="_blank">
+Pay With PayPal
+</a>
+
+<a
+class="pay-btn"
+id="whatsappBtn"
+target="_blank">
+Order Via WhatsApp
+</a>
+
+</div>
+
 </div>
 
 <footer>
-    THUBALESHA Sunglasses © 2026
+THUBALESHA Sunglasses © 2026
 </footer>
 
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+push
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDwUfXC0sXGxtNgVG_yvrDDzCNxAEeu8TY",
+
+authDomain: "payment-2d274.firebaseapp.com",
+
+databaseURL: "https://payment-2d274-default-rtdb.firebaseio.com",
+
+projectId: "payment-2d274",
+
+storageBucket: "payment-2d274.firebasestorage.app",
+
+messagingSenderId: "268933970850",
+
+appId: "1:268933970850:web:98c23b6d6872c85807d0fb"
+
+};
+
+const app=initializeApp(firebaseConfig);
+
+const db=getDatabase(app);
+
+window.db=db;
+window.ref=ref;
+window.push=push;
+
+</script>
+
+<!-- MAIN SCRIPT -->
+
 <script>
-function buyNow(product){
-    let phone = "27787102337";
-    let msg = encodeURIComponent("Hello, I want to order " + product + " for R550");
-    window.open("https://wa.me/" + phone + "?text=" + msg, "_blank");
+
+let cart=[];
+
+let deliveryFee=60;
+
+function addToCart(name,price){
+
+let item=cart.find(p=>p.name===name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name:name,
+price:price,
+qty:1
+});
+
+}
+
+updateCart();
+
+alert(name + " added to cart");
+
+}
+
+function updateCart(){
+
+const cartItems=document.getElementById("cartItems");
+
+cartItems.innerHTML="";
+
+let total=0;
+
+cart.forEach((item,index)=>{
+
+total += item.price * item.qty;
+
+cartItems.innerHTML += `
+
+<div class="cart-item">
+
+<span>${item.name} x${item.qty}</span>
+
+<div class="qty">
+
+<button onclick="changeQty(${index},-1)">-</button>
+
+<button onclick="changeQty(${index},1)">+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+total += deliveryFee;
+
+document.getElementById("total").innerText=total;
+
+document.getElementById("cartCount").innerText=cart.length;
+
+let percent=(total/1500)*100;
+
+if(percent>100) percent=100;
+
+document.getElementById("giftFill").style.width=
+percent+"%";
+
+document.getElementById("giftText").innerText=
+
+total>=1500
+?
+"🎉 Gift Unlocked"
+:
+"Spend R"+(1500-total);
+
+const message=encodeURIComponent(
+
+"Hello THUBALESHA, I want to order:\n\n" +
+
+cart.map(i => `${i.name} x${i.qty} - R${i.price*i.qty}`).join("\n") +
+
+`\n\nDelivery:R${deliveryFee}\nTotal:R${total}`
+
+);
+
+document.getElementById("whatsappBtn").href=
+
+"https://wa.me/27787102337?text=" + message;
+
+}
+
+function changeQty(index,change){
+
+cart[index].qty += change;
+
+if(cart[index].qty<=0){
+
+cart.splice(index,1);
+
+}
+
+updateCart();
+
+}
+
+function toggleCart(){
+
+document.getElementById("cartPanel")
+.classList.toggle("active");
+
+}
+
+function showCheckout(){
+
+document.getElementById("checkout")
+.style.display="block";
+
+}
+
+function changeDelivery(){
+
+deliveryFee=parseInt(
+
+document.getElementById("deliveryOption").value
+
+);
+
+updateCart();
+
 }
 
 function searchProducts(){
-    let input = document.getElementById("search").value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
 
-    cards.forEach(card => {
-        let text = card.innerText.toLowerCase();
-        card.style.display = text.includes(input) ? "block" : "none";
-    });
+let input=document.getElementById("search")
+.value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let text=card.innerText.toLowerCase();
+
+card.style.display=
+text.includes(input)
+?
+"block"
+:
+"none";
+
+});
+
 }
+
+async function placeOrder(){
+
+if(cart.length===0){
+
+alert("Cart is empty");
+
+return;
+
+}
+
+const name=
+document.getElementById("name").value;
+
+const phone=
+document.getElementById("phone").value;
+
+const address=
+document.getElementById("address").value;
+
+const referral=
+document.getElementById("referral").value;
+
+if(!name || !phone || !address){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+let total=0;
+
+cart.forEach(item=>{
+
+total += item.price * item.qty;
+
+});
+
+total += deliveryFee;
+
+const orderData={
+
+store:"THUBALESHA Sunglasses",
+
+customer:name,
+
+phone:phone,
+
+address:address,
+
+referral:referral,
+
+items:cart,
+
+deliveryFee:deliveryFee,
+
+total:total,
+
+status:"pending",
+
+createdAt:new Date().toISOString()
+
+};
+
+try{
+
+await push(
+
+ref(db,"orders"),
+
+orderData
+
+);
+
+alert("Order Saved Successfully");
+
+window.location.href=
+"https://pay.yoco.com/thubalesha-general-trading";
+
+}catch(error){
+
+console.log(error);
+
+alert("Error Saving Order");
+
+}
+
+}
+
 </script>
 
 </body>
-</html>
+    </html>
