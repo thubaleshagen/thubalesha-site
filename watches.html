@@ -3,277 +3,678 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>THUBALESHA Watches</title>
 
 <style>
+
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#111;
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+color:#111;
 }
 
 header{
-  background:#000;
-  color:#fff;
-  padding:18px;
-  text-align:center;
-  position:sticky;
-  top:0;
-  z-index:1000;
+background:#000;
+color:#fff;
+padding:18px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:1000;
 }
 
 header h1{
-  color:#d4af37;
+color:#d4af37;
 }
 
 .cart-btn{
-  margin-top:10px;
-  padding:10px 18px;
-  border:none;
-  background:#d4af37;
-  color:#000;
-  font-weight:bold;
-  border-radius:8px;
-  cursor:pointer;
+margin-top:10px;
+padding:10px 18px;
+border:none;
+background:#d4af37;
+color:#000;
+font-weight:bold;
+border-radius:8px;
+cursor:pointer;
 }
 
 #searchBar{
-  width:90%;
-  max-width:450px;
-  display:block;
-  margin:20px auto;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #ccc;
+width:90%;
+max-width:450px;
+display:block;
+margin:20px auto;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+#giftBox{
+text-align:center;
+padding:15px;
+}
+
+.gift-track{
+width:90%;
+height:20px;
+background:#ddd;
+margin:10px auto;
+border-radius:20px;
+overflow:hidden;
+}
+
+#giftFill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#d4af37,#ffd700);
+transition:0.4s;
 }
 
 .products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
-  padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
 }
 
 .card{
-  background:#fff;
-  border-radius:16px;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-  transition:0.3s;
+background:#fff;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+transition:0.3s;
 }
 
 .card:hover{
-  transform:translateY(-5px);
+transform:translateY(-5px);
 }
 
 .card img{
-  width:100%;
-  height:240px;
-  object-fit:cover;
+width:100%;
+height:240px;
+object-fit:cover;
 }
 
 .card-content{
-  padding:15px;
-  text-align:center;
+padding:15px;
+text-align:center;
 }
 
 .price{
-  color:#d4af37;
-  font-size:22px;
-  margin:10px 0;
-  font-weight:bold;
+color:#d4af37;
+font-size:22px;
+margin:10px 0;
+font-weight:bold;
 }
 
 .buy-btn{
-  background:#000;
-  color:#fff;
-  border:none;
-  padding:10px 16px;
-  border-radius:8px;
-  cursor:pointer;
-  width:100%;
+background:#000;
+color:#fff;
+border:none;
+padding:10px 16px;
+border-radius:8px;
+cursor:pointer;
+width:100%;
 }
 
 .buy-btn:hover{
-  background:#222;
+background:#222;
 }
 
 #cartPanel{
-  position:fixed;
-  right:-400px;
-  top:0;
-  width:350px;
-  height:100%;
-  background:#fff;
-  box-shadow:-5px 0 20px rgba(0,0,0,0.2);
-  padding:20px;
-  transition:0.4s;
-  overflow:auto;
-  z-index:2000;
+position:fixed;
+right:-400px;
+top:0;
+width:350px;
+height:100%;
+background:#fff;
+box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.4s;
+overflow:auto;
+z-index:2000;
 }
 
 #cartPanel.active{
-  right:0;
+right:0;
 }
 
 .cart-item{
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
 }
 
-.checkout-btn{
-  display:block;
-  width:100%;
-  padding:12px;
-  background:#25D366;
-  color:#fff;
-  text-align:center;
-  border-radius:8px;
-  text-decoration:none;
-  margin-top:15px;
-  font-weight:bold;
+.qty button{
+padding:3px 8px;
+}
+
+.pay-btn{
+display:block;
+width:100%;
+padding:12px;
+background:#25D366;
+color:#fff;
+text-align:center;
+border-radius:8px;
+text-decoration:none;
+margin-top:15px;
+font-weight:bold;
+border:none;
+cursor:pointer;
+}
+
+.pay-btn-black{
+background:#000;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+#checkout{
+display:none;
+margin-top:15px;
 }
 
 footer{
-  background:#000;
-  color:#fff;
-  text-align:center;
-  padding:20px;
-  margin-top:20px;
+background:#000;
+color:#fff;
+text-align:center;
+padding:20px;
+margin-top:20px;
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>THUBALESHA Watches</h1>
-  <p>Luxury Watches Collection</p>
-  <button class="cart-btn" onclick="toggleCart()">
-    Cart (<span id="cartCount">0</span>)
-  </button>
+
+<h1>THUBALESHA Watches</h1>
+
+<p>Luxury Watches Collection</p>
+
+<button class="cart-btn" onclick="toggleCart()">
+Cart (<span id="cartCount">0</span>)
+</button>
+
 </header>
 
-<input type="text" id="searchBar" placeholder="Search watches..." onkeyup="searchProducts()">
+<input
+type="text"
+id="searchBar"
+placeholder="Search watches..."
+onkeyup="searchProducts()"
+>
+
+<div id="giftBox">
+
+<h4>🎁 Free Gift At R3000</h4>
+
+<div class="gift-track">
+<div id="giftFill"></div>
+</div>
+
+<p id="giftText">
+Add items to unlock
+</p>
+
+</div>
 
 <div class="products" id="productList">
 
-  <div class="card">
-    <img src="188F383D-CD53-46B3-BAFB-D1836627F98A.jpg">
-    <div class="card-content">
-      <h3>THUBALESHA Gold Watch</h3>
-      <div class="price">R1550</div>
-      <button class="buy-btn" onclick="addToCart('THUBALESHA Gold Watch',1550)">Buy Now</button>
-    </div>
-  </div>
+<div class="card">
 
-  <div class="card">
-    <img src="s-l1600.jpeg">
-    <div class="card-content">
-      <h3>Luxury Silver Watch</h3>
-      <div class="price">R1550</div>
-      <button class="buy-btn" onclick="addToCart('Luxury Silver Watch',1550)">Buy Now</button>
-    </div>
-  </div>
+<img src="188F383D-CD53-46B3-BAFB-D1836627F98A.jpg">
 
-  <div class="card">
-    <img src="IMG-3329.png">
-    <div class="card-content">
-      <h3>Classic Black Watch</h3>
-      <div class="price">R1550</div>
-      <button class="buy-btn" onclick="addToCart('Classic Black Watch',1550)">Buy Now</button>
-    </div>
-  </div>
+<div class="card-content">
 
-  <div class="card">
-    <img src="33B61A55-E825-4936-B723-BAE267B5FA25.jpg">
-    <div class="card-content">
-      <h3>Premium Watch Edition</h3>
-      <div class="price">R1550</div>
-      <button class="buy-btn" onclick="addToCart('Premium Watch Edition',1550)">Buy Now</button>
-    </div>
-  </div>
+<h3>THUBALESHA Gold Watch</h3>
+
+<div class="price">R1550</div>
+
+<button class="buy-btn"
+onclick="addToCart('THUBALESHA Gold Watch',1550)">
+Buy Now
+</button>
 
 </div>
 
+</div>
+
+<div class="card">
+
+<img src="s-l1600.jpeg">
+
+<div class="card-content">
+
+<h3>Luxury Silver Watch</h3>
+
+<div class="price">R1550</div>
+
+<button class="buy-btn"
+onclick="addToCart('Luxury Silver Watch',1550)">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="IMG-3329.png">
+
+<div class="card-content">
+
+<h3>Classic Black Watch</h3>
+
+<div class="price">R1550</div>
+
+<button class="buy-btn"
+onclick="addToCart('Classic Black Watch',1550)">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="33B61A55-E825-4936-B723-BAE267B5FA25.jpg">
+
+<div class="card-content">
+
+<h3>Premium Watch Edition</h3>
+
+<div class="price">R1550</div>
+
+<button class="buy-btn"
+onclick="addToCart('Premium Watch Edition',1550)">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CART PANEL -->
+
 <div id="cartPanel">
-  <h2>Your Cart</h2>
-  <div id="cartItems"></div>
-  <h3>Total: R<span id="total">0</span></h3>
 
-  <a class="checkout-btn" id="checkoutBtn" target="_blank">
-    Checkout on WhatsApp
-  </a>
+<h2>Your Cart</h2>
 
-  <button class="buy-btn" onclick="toggleCart()" style="margin-top:10px;">Close</button>
+<div id="cartItems"></div>
+
+<h3>Total: R<span id="total">0</span></h3>
+
+<button class="pay-btn pay-btn-black"
+onclick="showCheckout()">
+Checkout
+</button>
+
+<button class="pay-btn pay-btn-black"
+onclick="toggleCart()">
+Close
+</button>
+
+<div id="checkout">
+
+<h3>Delivery Details</h3>
+
+<input id="name" placeholder="Full Name">
+
+<input id="phone" placeholder="Phone Number">
+
+<input id="address" placeholder="Delivery Address">
+
+<input id="referral" placeholder="Referral Code Optional">
+
+<select id="deliveryOption" onchange="changeDelivery()">
+<option value="60">Local Delivery R60</option>
+<option value="120">Nationwide Delivery R120</option>
+</select>
+
+<button class="pay-btn"
+onclick="placeOrder()">
+💳 Pay With Yoco
+</button>
+
+<a
+class="pay-btn pay-btn-black"
+href="https://www.paypal.com/ncp/payment/2QBAVWTMDFPFW"
+target="_blank">
+Pay With PayPal
+</a>
+
+<a
+class="pay-btn"
+id="checkoutBtn"
+target="_blank">
+Order Via WhatsApp
+</a>
+
+</div>
+
 </div>
 
 <footer>
-  <p>© 2026 THUBALESHA Watches</p>
+<p>© 2026 THUBALESHA Watches</p>
 </footer>
 
-<script>
-let cart = [];
+<!-- FIREBASE -->
 
-function addToCart(name, price){
-  cart.push({name, price});
-  updateCart();
-  alert(name + " added to cart");
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+push
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyDwUfXC0sXGxtNgVG_yvrDDzCNxAEeu8TY",
+
+authDomain: "payment-2d274.firebaseapp.com",
+
+databaseURL: "https://payment-2d274-default-rtdb.firebaseio.com",
+
+projectId: "payment-2d274",
+
+storageBucket: "payment-2d274.firebasestorage.app",
+
+messagingSenderId: "268933970850",
+
+appId: "1:268933970850:web:98c23b6d6872c85807d0fb"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+window.db = db;
+window.ref = ref;
+window.push = push;
+
+</script>
+
+<!-- MAIN SCRIPT -->
+
+<script>
+
+let cart=[];
+
+let deliveryFee=60;
+
+function addToCart(name,price){
+
+let item=cart.find(p=>p.name===name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name:name,
+price:price,
+qty:1
+});
+
+}
+
+updateCart();
+
+alert(name + " added to cart");
+
 }
 
 function updateCart(){
-  const cartItems = document.getElementById("cartItems");
-  const totalEl = document.getElementById("total");
-  const cartCount = document.getElementById("cartCount");
 
-  cartItems.innerHTML = "";
+const cartItems=document.getElementById("cartItems");
 
-  let total = 0;
+const totalEl=document.getElementById("total");
 
-  cart.forEach((item, index)=>{
-    total += item.price;
+const cartCount=document.getElementById("cartCount");
 
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        <span>${item.name}</span>
-        <span>R${item.price}</span>
-      </div>
-    `;
-  });
+cartItems.innerHTML="";
 
-  totalEl.innerText = total;
-  cartCount.innerText = cart.length;
+let total=0;
 
-  const message = encodeURIComponent(
-    "Hello THUBALESHA, I want to order:\n\n" +
-    cart.map(i => `${i.name} - R${i.price}`).join("\n") +
-    `\n\nTotal: R${total}`
-  );
+cart.forEach((item,index)=>{
 
-  document.getElementById("checkoutBtn").href =
-    "https://wa.me/27787102337?text=" + message;
+total += item.price * item.qty;
+
+cartItems.innerHTML += `
+
+<div class="cart-item">
+
+<span>${item.name} x${item.qty}</span>
+
+<div class="qty">
+
+<button onclick="changeQty(${index},-1)">-</button>
+
+<button onclick="changeQty(${index},1)">+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+total += deliveryFee;
+
+totalEl.innerText=total;
+
+cartCount.innerText=cart.length;
+
+let percent=(total/3000)*100;
+
+if(percent>100) percent=100;
+
+document.getElementById("giftFill").style.width=
+percent+"%";
+
+document.getElementById("giftText").innerText=
+
+total>=3000
+?
+"🎉 Gift Unlocked"
+:
+"Spend R"+(3000-total);
+
+const message=encodeURIComponent(
+
+"Hello THUBALESHA, I want to order:\n\n" +
+
+cart.map(i => `${i.name} x${i.qty} - R${i.price*i.qty}`).join("\n") +
+
+`\n\nDelivery:R${deliveryFee}\nTotal:R${total}`
+
+);
+
+document.getElementById("checkoutBtn").href=
+
+"https://wa.me/27787102337?text=" + message;
+
+}
+
+function changeQty(index,change){
+
+cart[index].qty += change;
+
+if(cart[index].qty<=0){
+
+cart.splice(index,1);
+
+}
+
+updateCart();
+
 }
 
 function toggleCart(){
-  document.getElementById("cartPanel").classList.toggle("active");
+
+document.getElementById("cartPanel")
+.classList.toggle("active");
+
+}
+
+function showCheckout(){
+
+document.getElementById("checkout")
+.style.display="block";
+
+}
+
+function changeDelivery(){
+
+deliveryFee=parseInt(
+
+document.getElementById("deliveryOption").value
+
+);
+
+updateCart();
+
 }
 
 function searchProducts(){
-  let input = document.getElementById("searchBar").value.toLowerCase();
-  let cards = document.querySelectorAll(".card");
 
-  cards.forEach(card=>{
-    let text = card.innerText.toLowerCase();
-    card.style.display = text.includes(input) ? "block" : "none";
-  });
+let input=document.getElementById("searchBar")
+.value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let text=card.innerText.toLowerCase();
+
+card.style.display=
+text.includes(input)
+?
+"block"
+:
+"none";
+
+});
+
 }
+
+async function placeOrder(){
+
+if(cart.length===0){
+
+alert("Cart is empty");
+
+return;
+
+}
+
+const name=
+document.getElementById("name").value;
+
+const phone=
+document.getElementById("phone").value;
+
+const address=
+document.getElementById("address").value;
+
+const referral=
+document.getElementById("referral").value;
+
+if(!name || !phone || !address){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+let total=0;
+
+cart.forEach(item=>{
+
+total += item.price * item.qty;
+
+});
+
+total += deliveryFee;
+
+const orderData={
+
+store:"THUBALESHA Watches",
+
+customer:name,
+
+phone:phone,
+
+address:address,
+
+referral:referral,
+
+items:cart,
+
+deliveryFee:deliveryFee,
+
+total:total,
+
+status:"pending",
+
+createdAt:new Date().toISOString()
+
+};
+
+try{
+
+await push(
+
+ref(db,"orders"),
+
+orderData
+
+);
+
+alert("Order Saved Successfully");
+
+window.location.href=
+"https://pay.yoco.com/thubalesha-general-trading";
+
+}catch(error){
+
+console.log(error);
+
+alert("Error Saving Order");
+
+}
+
+}
+
 </script>
 
 </body>
