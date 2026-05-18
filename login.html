@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THUBALESHA Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Segoe UI,sans-serif;
+background:#0d0d0d;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+}
+
+.container{
+background:#161616;
+padding:30px;
+border-radius:15px;
+width:100%;
+max-width:420px;
+box-shadow:0 0 25px rgba(255,215,0,0.2);
+}
+
+h1{
+text-align:center;
+color:gold;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:none;
+border-radius:8px;
+background:#222;
+color:white;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:14px;
+background:gold;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+}
+
+button:hover{
+background:#ffd700;
+}
+
+.link{
+text-align:center;
+margin-top:15px;
+}
+
+.link a{
+color:gold;
+text-decoration:none;
+}
+
+.error{
+background:#842029;
+padding:12px;
+border-radius:8px;
+margin-top:15px;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>THUBALESHA Login</h1>
+
+<input type="email" id="email" placeholder="Email Address">
+
+<button onclick="login()">
+Login
+</button>
+
+<div class="link">
+
+<a href="signup.html">
+Create New Account
+</a>
+
+</div>
+
+<div id="msg"></div>
+
+</div>
+
+<script>
+
+const USERS_KEY="thubalesha_users";
+
+const SESSION_KEY="thubalesha_session";
+
+// LOGIN
+
+function login(){
+
+let email=
+document.getElementById("email").value;
+
+let users=
+JSON.parse(
+localStorage.getItem(USERS_KEY)||"[]"
+);
+
+let user=
+users.find(u=>u.email===email);
+
+if(user){
+
+localStorage.setItem(
+SESSION_KEY,
+JSON.stringify(user)
+);
+
+window.location.href="signup.html";
+
+}else{
+
+document.getElementById("msg").innerHTML=
+
+`<div class="error">
+
+Account not found
+
+</div>`;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
