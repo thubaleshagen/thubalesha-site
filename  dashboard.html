@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>THUBALESHA Dashboard</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Segoe UI,sans-serif;
+background:#0d0d0d;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+}
+
+.header{
+background:#161616;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 0 20px rgba(255,215,0,0.15);
+}
+
+.header h1{
+color:gold;
+margin-bottom:5px;
+}
+
+.card{
+background:#161616;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+box-shadow:0 0 20px rgba(255,215,0,0.1);
+}
+
+.card h2{
+color:gold;
+margin-bottom:15px;
+font-size:20px;
+}
+
+.stat{
+font-size:35px;
+font-weight:bold;
+color:gold;
+margin-top:10px;
+}
+
+.referral-box{
+background:#000;
+padding:15px;
+border-radius:10px;
+border:1px solid gold;
+font-size:20px;
+text-align:center;
+margin-top:10px;
+word-break:break-all;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+transition:0.3s;
+}
+
+.copy-btn{
+background:#007bff;
+color:white;
+}
+
+.share-btn{
+background:#25D366;
+color:white;
+}
+
+.logout-btn{
+background:#ff4444;
+color:white;
+}
+
+.friend{
+background:#222;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+}
+
+.empty{
+color:#999;
+margin-top:10px;
+}
+
+.small{
+font-size:14px;
+color:#aaa;
+margin-top:5px;
+}
+
+.order{
+background:#222;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>THUBALESHA</h1>
+
+<p>Customer Dashboard</p>
+
+</div>
+
+<!-- PROFILE -->
+
+<div class="card">
+
+<h2>My Profile</h2>
+
+<p><b>Name:</b> <span id="name"></span></p>
+
+<p><b>Email:</b> <span id="email"></span></p>
+
+<p><b>Phone:</b> <span id="phone"></span></p>
+
+<p><b>Joined:</b> <span id="joined"></span></p>
+
+</div>
+
+<!-- REFERRAL -->
+
+<div class="card">
+
+<h2>My Referral Code</h2>
+
+<div class="referral-box" id="referralCode"></div>
+
+<button class="copy-btn" onclick="copyReferral()">
+Copy Referral Code
+</button>
+
+<button class="share-btn" onclick="shareReferral()">
+Share On WhatsApp
+</button>
+
+</div>
+
+<!-- STATS -->
+
+<div class="card">
+
+<h2>Referral Statistics</h2>
+
+<p>Total Referrals</p>
+
+<div class="stat" id="refCount">0</div>
+
+<p class="small">
+Earn R50 per successful referral
+</p>
+
+</div>
+
+<!-- REWARDS -->
+
+<div class="card">
+
+<h2>Rewards Balance</h2>
+
+<div class="stat">
+R<span id="rewards">0</span>
+</div>
+
+</div>
+
+<!-- FRIENDS -->
+
+<div class="card">
+
+<h2>Friends Referred</h2>
+
+<div id="friendsList"></div>
+
+</div>
+
+<!-- ORDERS -->
+
+<div class="card">
+
+<h2>My Orders</h2>
+
+<div id="ordersList"></div>
+
+</div>
+
+<button class="logout-btn" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<script>
+
+const USERS_KEY="thubalesha_users";
+
+const SESSION_KEY="thubalesha_session";
+
+const ORDERS_KEY="thubalesha_orders";
+
+// SESSION
+
+const session=
+JSON.parse(
+localStorage.getItem(SESSION_KEY)
+);
+
+// CHECK LOGIN
+
+if(!session){
+
+window.location.href="login.html";
+
+}
+
+// USERS
+
+let users=
+JSON.parse(
+localStorage.getItem(USERS_KEY)||"[]"
+);
+
+// FIND USER
+
+let currentUser=
+users.find(
+u=>u.email===session.email
+);
+
+// LOAD PROFILE
+
+document.getElementById("name")
+.innerText=currentUser.name;
+
+document.getElementById("email")
+.innerText=currentUser.email;
+
+document.getElementById("phone")
+.innerText=currentUser.contact;
+
+document.getElementById("joined")
+.innerText=currentUser.joined;
+
+document.getElementById("referralCode")
+.innerText=currentUser.referral;
+
+// REFERRALS
+
+document.getElementById("refCount")
+.innerText=currentUser.friends.length;
+
+document.getElementById("rewards")
+.innerText=currentUser.rewards;
+
+// FRIENDS
+
+let friendsHTML="";
+
+if(currentUser.friends.length===0){
+
+friendsHTML=
+`<p class="empty">
+No referrals yet
+</p>`;
+
+}else{
+
+currentUser.friends.forEach(friend=>{
+
+friendsHTML+=`
+
+<div class="friend">
+
+${friend}
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("friendsList")
+.innerHTML=friendsHTML;
+
+// ORDERS
+
+let orders=
+JSON.parse(
+localStorage.getItem(ORDERS_KEY)||"[]"
+);
+
+let myOrders=
+orders.filter(
+o=>o.email===currentUser.email
+);
+
+let orderHTML="";
+
+if(myOrders.length===0){
+
+orderHTML=
+`<p class="empty">
+No orders yet
+</p>`;
+
+}else{
+
+myOrders.forEach(order=>{
+
+orderHTML+=`
+
+<div class="order">
+
+<b>${order.product}</b>
+
+<br><br>
+
+Amount: R${order.total}
+
+<br>
+
+Status: Pending
+
+<br>
+
+Date: ${order.date}
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("ordersList")
+.innerHTML=orderHTML;
+
+// COPY
+
+function copyReferral(){
+
+navigator.clipboard.writeText(
+currentUser.referral
+);
+
+alert("Referral code copied");
+
+}
+
+// SHARE
+
+function shareReferral(){
+
+let text=
+
+`Join THUBALESHA and use my referral code:
+
+${currentUser.referral}
+
+Website:
+https://thubalesha.co.za`;
+
+window.open(
+
+"https://wa.me/?text="+
+encodeURIComponent(text)
+
+);
+
+}
+
+// LOGOUT
+
+function logout(){
+
+localStorage.removeItem(
+SESSION_KEY
+);
+
+window.location.href="login.html";
+
+}
+
+</script>
+
+</body>
+</html>
