@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THUBALESHA Referral System</title>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Segoe UI,sans-serif;
+background:linear-gradient(135deg,#050505,#101820,#000000);
+color:white;
+padding:20px;
+min-height:100vh;
+}
+
+.container{
+max-width:520px;
+margin:auto;
+background:#161616;
+padding:25px;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,215,0,0.2);
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.logo{
+text-align:center;
+font-size:40px;
+margin-bottom:10px;
+}
+
+h1,h2{
+text-align:center;
+color:gold;
+margin-bottom:18px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin:8px 0;
+border:none;
+border-radius:10px;
+background:#222;
+color:white;
+font-size:15px;
+outline:none;
+}
+
+input:focus{
+border:1px solid gold;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+font-size:15px;
+transition:0.3s;
+}
+
+.main-btn{
+background:gold;
+color:black;
+}
+
+.main-btn:hover{
+transform:scale(1.02);
+background:#ffd700;
+}
+
+.share-btn{
+background:#25D366;
+color:white;
+}
+
+.copy-btn{
+background:#007bff;
+color:white;
+}
+
+.logout-btn{
+background:#ff4444;
+color:white;
+}
+
+.card{
+background:#222;
+padding:15px;
+border-radius:12px;
+margin-top:15px;
+}
+
+.stat{
+font-size:28px;
+font-weight:bold;
+color:gold;
+}
+
+.ref-box{
+background:#000;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+font-size:18px;
+text-align:center;
+border:1px solid gold;
+}
+
+.friend{
+padding:10px;
+background:#111;
+border-radius:8px;
+margin-top:8px;
+}
+
+.success{
+background:#0f5132;
+padding:12px;
+border-radius:8px;
+margin-top:15px;
+text-align:center;
+}
+
+.error{
+background:#842029;
+padding:12px;
+border-radius:8px;
+margin-top:15px;
+text-align:center;
+}
+
+.small{
+font-size:14px;
+color:#aaa;
+margin-top:5px;
+}
+
+.selfie-preview{
+width:130px;
+height:130px;
+border-radius:50%;
+object-fit:cover;
+display:block;
+margin:15px auto;
+border:4px solid gold;
+background:#000;
+}
+
+.upload-box{
+background:#1e1e1e;
+padding:12px;
+border-radius:12px;
+margin-top:10px;
+text-align:center;
+}
+
+.upload-box label{
+color:gold;
+font-weight:bold;
+display:block;
+margin-bottom:8px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- SIGNUP -->
+<div class="container" id="signupBox">
+
+<div class="logo">✨</div>
+
+<h1>THUBALESHA</h1>
+<h2>Create Account</h2>
+
+<form id="signupForm">
+
+<img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+id="preview" class="selfie-preview">
+
+<div class="upload-box">
+<label>Upload Selfie</label>
+<input type="file" id="selfie" accept="image/*" required>
+</div>
+
+<input type="text" id="name" placeholder="Full Name" required>
+
+<input type="text" id="idnumber" placeholder="ID Number" required>
+
+<input type="text" id="contact" placeholder="Phone Number" required>
+
+<input type="email" id="email" placeholder="Email Address" required>
+
+<input type="text" id="address" placeholder="Home Address" required>
+
+<input type="text" id="referred" placeholder="Referral Code Optional">
+
+<button type="submit" class="main-btn">
+Create Account
+</button>
+
+</form>
+
+<div id="msg"></div>
+
+</div>
+
+<!-- DASHBOARD -->
+<div class="container" id="dashboardBox" style="display:none;">
+
+<h1>THUBALESHA</h1>
+<h2>My Dashboard</h2>
+
+<div class="card" style="text-align:center;">
+<img id="dashSelfie" class="selfie-preview">
+<p>Welcome Back</p>
+<h3 id="dashName"></h3>
+<p class="small" id="dashEmail"></p>
+</div>
+
+<div class="card">
+<p>My Referral Code</p>
+<div class="ref-box" id="dashReferral"></div>
+
+<button class="copy-btn" onclick="copyReferral()">
+Copy Referral Code
+</button>
+
+<button class="share-btn" onclick="shareReferral()">
+Share On WhatsApp
+</button>
+</div>
+
+<div class="card">
+<p>Total Referrals</p>
+<div class="stat" id="dashCount">0</div>
+</div>
+
+<div class="card">
+<p>Estimated Rewards</p>
+<div class="stat">R<span id="dashRewards">0</span></div>
+<p class="small">Earn R50 per successful referral</p>
+</div>
+
+<div class="card">
+<h3>Friends Referred</h3>
+<div id="friendsList"></div>
+</div>
+
+<button class="logout-btn" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<script>
+
+(function(){
+emailjs.init("0PazREzQtkxaCNEKN");
+})();
+
+const USERS_KEY="thubalesha_users";
+const SESSION_KEY="thubalesha_session";
+
+// SELFIE PREVIEW
+
+document.getElementById("selfie")
+.addEventListener("change",function(){
+
+const file=this.files[0];
+
+if(file){
+const reader=new FileReader();
+
+reader.onload=function(e){
+document.getElementById("preview")
+.src=e.target.result;
+}
+
+reader.readAsDataURL(file);
+}
+
+});
+
+function generateReferral(){
+
+const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+let code="THUBA-";
+
+for(let i=0;i<6;i++){
+code+=chars.charAt(Math.floor(Math.random()*chars.length));
+}
+
+return code;
+}
+
+function getUsers(){
+return JSON.parse(localStorage.getItem(USERS_KEY)||"[]");
+}
+
+function saveUsers(users){
+localStorage.setItem(USERS_KEY,JSON.stringify(users));
+}
+
+function saveSession(user){
+localStorage.setItem(SESSION_KEY,JSON.stringify(user));
+}
+
+function getSession(){
+return JSON.parse(localStorage.getItem(SESSION_KEY));
+}
+
+// SIGNUP
+
+document.getElementById("signupForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let users=getUsers();
+
+let name=document.getElementById("name").value;
+let idnumber=document.getElementById("idnumber").value;
+let contact=document.getElementById("contact").value;
+let email=document.getElementById("email").value;
+let address=document.getElementById("address").value;
+let referred=document.getElementById("referred").value.trim();
+let selfie=document.getElementById("preview").src;
+
+let referral=generateReferral();
+
+let existing=users.find(u=>u.email===email);
+
+if(existing){
+
+document.getElementById("msg").innerHTML=
+`<div class="error">Email already registered</div>`;
+
+return;
+}
+
+let newUser={
+name,
+idnumber,
+contact,
+email,
+address,
+referred,
+referral,
+selfie,
+friends:[],
+rewards:0,
+joined:new Date().toLocaleDateString()
+};
+
+if(referred){
+
+let refUser=users.find(u=>u.referral===referred);
+
+if(refUser){
+refUser.friends.push(name);
+refUser.rewards += 50;
+}
+
+}
+
+users.push(newUser);
+saveUsers(users);
+saveSession(newUser);
+
+emailjs.send(
+"service_z1c4gpi",
+"template_5tupw7g",
+{
+name:name,
+id:idnumber,
+contact:contact,
+email:email,
+address:address,
+referred:referred,
+referral:referral
+}
+);
+
+
+document.getElementById("msg").innerHTML=
+`<div class="success">Account Created Successfully</div>`;
+
+setTimeout(()=>{
+showDashboard(newUser);
+},1000);
+
+});
+
+function showDashboard(user){
+
+document.getElementById("signupBox")
+.style.display="none";
+
+document.getElementById("dashboardBox")
+.style.display="block";
+
+let users=getUsers();
+
+let myData=users.find(
+u=>u.referral===user.referral
+);
+
+
+document.getElementById("dashSelfie")
+.src=myData.selfie;
+
+
+document.getElementById("dashName")
+.innerText=myData.name;
+
+
+document.getElementById("dashEmail")
+.innerText=myData.email;
+
+
+document.getElementById("dashReferral")
+.innerText=myData.referral;
+
+
+document.getElementById("dashCount")
+.innerText=myData.friends.length;
+
+
+document.getElementById("dashRewards")
+.innerText=myData.rewards;
+
+let html="";
+
+if(myData.friends.length===0){
+html="<p>No referrals yet</p>";
+}else{
+
+myData.friends.forEach(friend=>{
+
+html+=`
+<div class="friend">
+${friend}
+</div>
+`;
+
+});
+
+}
+
+
+document.getElementById("friendsList")
+.innerHTML=html;
+
+}
+
+function copyReferral(){
+
+let code=document.getElementById("dashReferral")
+.innerText;
+
+navigator.clipboard.writeText(code);
+
+alert("Referral Code Copied");
+
+}
+
+function shareReferral(){
+
+let code=document.getElementById("dashReferral")
+.innerText;
+
+let text=`Join THUBALESHA using my referral code: ${code}`;
+
+window.open(
+"https://wa.me/?text="+
+encodeURIComponent(text)
+);
+
+}
+
+function logout(){
+localStorage.removeItem(SESSION_KEY);
+location.reload();
+}
+
+window.onload=function(){
+
+let session=getSession();
+
+if(session){
+showDashboard(session);
+}
+
+}
+
+</script>
+</body>
+</html>
