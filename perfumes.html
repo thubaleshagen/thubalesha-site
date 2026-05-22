@@ -1,0 +1,547 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THUBALESHA Fragrance</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Segoe UI,sans-serif;
+background:linear-gradient(135deg,#fffaf5,#e6d3a3,#fffaf5);
+min-height:100vh;
+}
+
+header{
+background:#000;
+color:#fff;
+padding:15px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+header button{
+margin-top:10px;
+padding:10px 18px;
+background:#d4af37;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.trust{
+background:#fff;
+padding:12px;
+text-align:center;
+font-size:14px;
+}
+
+#searchBar{
+width:90%;
+max-width:400px;
+display:block;
+margin:20px auto;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+#giftBox{
+text-align:center;
+padding:15px;
+}
+
+.gift-track{
+width:90%;
+height:20px;
+background:#ddd;
+margin:10px auto;
+border-radius:20px;
+overflow:hidden;
+}
+
+#giftFill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#d4af37,#ffd700);
+transition:0.4s;
+}
+
+#perfumeList{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:15px;
+padding:15px;
+}
+
+.card{
+background:#fff;
+padding:15px;
+border-radius:16px;
+box-shadow:0 8px 18px rgba(0,0,0,0.15);
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.popular{
+background:#d4af37;
+padding:4px 8px;
+border-radius:8px;
+display:inline-block;
+font-size:12px;
+margin-bottom:8px;
+}
+
+.card p{
+font-size:18px;
+font-weight:bold;
+color:#d4af37;
+margin:10px 0;
+}
+
+.card button{
+width:100%;
+padding:10px;
+background:#000;
+color:#fff;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+#cartPanel{
+position:fixed;
+top:0;
+right:0;
+width:100%;
+max-width:380px;
+height:100%;
+background:#fff;
+padding:20px;
+overflow:auto;
+display:none;
+z-index:9999;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:12px;
+}
+
+.qty button{
+padding:3px 8px;
+}
+
+.pay-btn{
+display:block;
+width:100%;
+padding:12px;
+margin-top:10px;
+background:#000;
+color:#fff;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+text-align:center;
+text-decoration:none;
+}
+
+input,select{
+width:100%;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+#checkout{
+display:none;
+margin-top:15px;
+}
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:#fff;
+padding:12px 18px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+}
+
+footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:20px;
+margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<header>
+<h2>THUBALESHA Fragrance</h2>
+<button onclick="openCart()">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+</header>
+
+<div class="trust">
+✔ Trusted Store | 🚚 Nationwide Delivery | 💳 Secure Payments
+</div>
+
+<input
+type="text"
+id="searchBar"
+placeholder="Search perfume..."
+onkeyup="searchPerfume()"
+>
+
+<div id="giftBox">
+<h4>🎁 Free Gift At R750</h4>
+<div class="gift-track">
+<div id="giftFill"></div>
+</div>
+<p id="giftText">Add items to unlock</p>
+</div>
+
+<div id="perfumeList"></div>
+
+<div id="cartPanel">
+<h2>Your Cart</h2>
+<div id="cartItems"></div>
+<h3>Total: R<span id="totalPrice">0</span></h3>
+
+<button class="pay-btn" onclick="showCheckout()">
+Checkout
+</button>
+
+<button class="pay-btn" onclick="closeCart()">
+Close
+</button>
+
+<div id="checkout">
+<h3>Delivery Details</h3>
+
+<input id="name" placeholder="Full Name">
+<input id="phone" placeholder="Phone Number">
+<input id="address" placeholder="Delivery Address">
+<input id="referral" placeholder="Referral Code Optional">
+
+<select id="deliveryOption" onchange="changeDelivery()">
+<option value="60">Local Delivery R60</option>
+<option value="120">Nationwide Delivery R120</option>
+</select>
+
+<button class="pay-btn" onclick="placeOrder()">
+💳 Pay With Yoco
+</button>
+
+<a
+class="pay-btn"
+href="https://www.paypal.com/ncp/payment/2QBAVWTMDFPFW"
+target="_blank">
+Pay With PayPal
+</a>
+
+<a
+class="pay-btn"
+id="whatsappOrder"
+target="_blank">
+Order Via WhatsApp
+</a>
+</div>
+</div>
+
+<a
+href="https://wa.me/27656911520"
+class="whatsapp">
+Chat
+</a>
+
+<footer>
+© 2026 THUBALESHA Fragrance
+</footer>
+
+<script type="module">
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+push
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyDwUfXC0sXGxtNgVG_yvrDDzCNxAEeu8TY",
+authDomain: "payment-2d274.firebaseapp.com",
+databaseURL: "https://payment-2d274-default-rtdb.firebaseio.com",
+projectId: "payment-2d274",
+storageBucket: "payment-2d274.firebasestorage.app",
+messagingSenderId: "268933970850",
+appId: "1:268933970850:web:98c23b6d6872c85807d0fb"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+window.db = db;
+window.ref = ref;
+window.push = push;
+</script>
+
+<script>
+const perfumes = [
+{name:"Dior Sauvage",popular:true},
+{name:"Bleu de Chanel",popular:true},
+{name:"Creed Aventus",popular:true},
+{name:"Black Opium",popular:true},
+{name:"Good Girl",popular:true},
+{name:"One Million",popular:true},
+{name:"Versace Eros",popular:true},
+{name:"YSL Libre",popular:true},
+{name:"La Vie Est Belle",popular:true},
+{name:"Armani Code",popular:true},
+{name:"Chanel No.5"},
+{name:"Lady Million"},
+{name:"Red Door"},
+{name:"Coppelia"},
+{name:"Avroy Chalet"},
+{name:"Paco Invictus"},
+{name:"Tom Ford Oud Wood"},
+{name:"Dunhill Red"},
+{name:"Dunhill Black"},
+{name:"Ted Lapidus"},
+{name:"Aramis 900"},
+{name:"Belagari"},
+{name:"Hordelsol"},
+{name:"Sheriff"},
+{name:"OPRHE"},
+{name:"PAN"},
+{name:"ANG"},
+{name:"DHL"},
+{name:"Tza"},
+{name:"Gucci Bloom"},
+{name:"Burberry Her"},
+{name:"CK One"},
+{name:"CK Be"},
+{name:"Issey Miyake"},
+{name:"Davidoff Cool Water"},
+{name:"Bvlgari Man"},
+{name:"Jaguar Classic"},
+{name:"Lacoste White"},
+{name:"Hugo Boss"},
+{name:"Boss Bottled"},
+{name:"212 VIP"},
+{name:"212 Sexy"},
+{name:"Mont Blanc Legend"},
+{name:"Mont Blanc Explorer"},
+{name:"Diesel Only The Brave"},
+{name:"Azzaro Wanted"},
+{name:"Azzaro Chrome"},
+{name:"Nautica Voyage"},
+{name:"YSL Y"},
+{name:"Armani Si"},
+{name:"Givenchy Gentleman"},
+{name:"Givenchy Irresistible"},
+{name:"Joop Homme"},
+{name:"Polo Blue"},
+{name:"Polo Red"},
+{name:"Polo Black"}
+];
+
+let cart = [];
+let deliveryFee = 60;
+
+function loadPerfumes(list){
+const c = document.getElementById("perfumeList");
+c.innerHTML = "";
+
+list.forEach(p => {
+c.innerHTML += `
+<div class="card">
+${p.popular ? '<div class="popular">🔥 Popular</div>' : ''}
+<h4>${p.name}</h4>
+<p>R230</p>
+<button onclick="addToCart('${p.name}')">
+Add To Cart
+</button>
+</div>
+`;
+});
+}
+
+function addToCart(name){
+let item = cart.find(p => p.name === name);
+
+if(item){
+item.qty++;
+}else{
+cart.push({
+name:name,
+qty:1
+});
+}
+
+updateCart();
+}
+
+function updateCart(){
+const items = document.getElementById("cartItems");
+items.innerHTML = "";
+
+let total = 0;
+
+cart.forEach((p,i)=>{
+let price = 230 * p.qty;
+total += price;
+
+items.innerHTML += `
+<div class="cart-item">
+<span>${p.name} x${p.qty}</span>
+<div class="qty">
+<button onclick="changeQty(${i},-1)">-</button>
+<button onclick="changeQty(${i},1)">+</button>
+</div>
+</div>
+`;
+});
+
+total += deliveryFee;
+
+document.getElementById("totalPrice").innerText = total;
+document.getElementById("cartCount").innerText = cart.length;
+
+let percent = (total / 750) * 100;
+if(percent > 100) percent = 100;
+
+document.getElementById("giftFill").style.width = percent + "%";
+
+document.getElementById("giftText").innerText =
+total >= 750
+? "🎉 Gift Unlocked"
+: "Spend R" + (750-total);
+
+let order = cart.map(p => `${p.name} x${p.qty}`).join(", ");
+
+document.getElementById("whatsappOrder").href =
+`https://wa.me/27656911520?text=Order:%20${order}%20Total:R${total}`;
+}
+
+function changeQty(i,change){
+cart[i].qty += change;
+
+if(cart[i].qty <= 0){
+cart.splice(i,1);
+}
+
+updateCart();
+}
+
+function searchPerfume(){
+let v = document.getElementById("searchBar").value.toLowerCase();
+
+loadPerfumes(
+perfumes.filter(p =>
+p.name.toLowerCase().includes(v)
+)
+);
+}
+
+function changeDelivery(){
+deliveryFee = parseInt(
+document.getElementById("deliveryOption").value
+);
+
+updateCart();
+}
+
+function openCart(){
+document.getElementById("cartPanel").style.display = "block";
+}
+
+function closeCart(){
+document.getElementById("cartPanel").style.display = "none";
+}
+
+function showCheckout(){
+document.getElementById("checkout").style.display = "block";
+}
+
+async function placeOrder(){
+if(cart.length === 0){
+alert("Cart is empty");
+return;
+}
+
+const name = document.getElementById("name").value;
+const phone = document.getElementById("phone").value;
+const address = document.getElementById("address").value;
+const referral = document.getElementById("referral").value;
+
+if(!name || !phone || !address){
+alert("Please fill all fields");
+return;
+}
+
+let total = 0;
+
+cart.forEach(p => {
+total += 230 * p.qty;
+});
+
+total += deliveryFee;
+
+const orderData = {
+customer:name,
+phone:phone,
+address:address,
+referral:referral,
+items:cart,
+deliveryFee:deliveryFee,
+total:total,
+status:"pending",
+createdAt:new Date().toISOString()
+};
+
+try{
+await push(
+ref(db,"orders"),
+orderData
+);
+
+alert("Order Saved Successfully");
+
+window.location.href =
+"https://pay.yoco.com/thubalesha-general-trading";
+
+}catch(error){
+console.log(error);
+alert("Error Saving Order");
+}
+}
+
+loadPerfumes(perfumes);
+</script>
+
+</body>
+</html>
