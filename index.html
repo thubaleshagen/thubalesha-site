@@ -6,7 +6,7 @@
 
 <title>THUBALESHA Fragrance</title>
 
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,295 +17,358 @@ box-sizing:border-box;
 }
 
 body{
-font-family:'Segoe UI',sans-serif;
-background:#fffaf5;
-color:#2c2c2c;
-line-height:1.6;
+font-family:'Poppins',sans-serif;
+background:#f8f5ef;
+color:#111;
+overflow-x:hidden;
 }
 
 /* HEADER */
 
 header{
 background:#000;
-padding:1.5rem;
-text-align:center;
-color:#fff;
+padding:18px 20px;
 position:sticky;
 top:0;
-z-index:1000;
+z-index:999;
+box-shadow:0 4px 15px rgba(0,0,0,0.2);
 }
 
-header img{
-max-width:280px;
-width:100%;
-}
-
-nav{
+.header-wrap{
 display:flex;
-justify-content:center;
-gap:14px;
-flex-wrap:wrap;
-margin-top:15px;
+justify-content:space-between;
+align-items:center;
 }
 
-nav a{
+.logo{
 color:#fff;
-text-decoration:none;
-font-weight:bold;
+font-size:24px;
+font-weight:700;
 }
 
-/* BUTTONS */
+.logo span{
+color:#d4af37;
+}
 
-.link-btn,
-.buy-button{
-display:inline-block;
+.cart-btn{
 background:#d4af37;
 color:#000;
-padding:.7rem 1.2rem;
-border-radius:8px;
-cursor:pointer;
-text-decoration:none;
-font-weight:bold;
+padding:12px 18px;
 border:none;
-transition:.3s;
-}
-
-.link-btn:hover,
-.buy-button:hover{
-transform:translateY(-2px);
-opacity:.9;
-}
-
-.buy-button{
-background:#000;
-color:#fff;
-margin-top:15px;
-}
-
-/* DROPDOWN */
-
-.dropdown{
-position:relative;
-display:inline-block;
-}
-
-.dropdown-content{
-display:none;
-position:absolute;
-background:#fff;
-min-width:220px;
-box-shadow:0 8px 20px rgba(0,0,0,.2);
 border-radius:10px;
-overflow:hidden;
-z-index:1000;
-top:110%;
-left:0;
-}
-
-.dropdown-content a{
-color:#000;
-padding:14px 18px;
-text-decoration:none;
-display:block;
-font-weight:bold;
-}
-
-.dropdown-content a:hover{
-background:#f2f2f2;
-}
-
-.dropdown:hover .dropdown-content{
-display:block;
+font-weight:700;
+cursor:pointer;
 }
 
 /* HERO */
 
 .hero{
-position:relative;
-padding:120px 20px;
-text-align:center;
-overflow:hidden;
-min-height:70vh;
+height:70vh;
+background:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+url('https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1200&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
-}
-
-.hero video{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:-1;
-}
-
-.hero::before{
-content:"";
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.35);
-}
-
-.hero img,
-.hero p{
-position:relative;
-z-index:2;
-}
-
-.hero img{
-width:85%;
-max-width:380px;
-border-radius:14px;
-}
-
-.tagline{
-margin-top:20px;
-background:rgba(0,0,0,.55);
-color:#fff;
-display:inline-block;
-padding:.8rem 1.3rem;
-border-radius:10px;
-font-size:1.1rem;
-}
-
-/* SECTIONS */
-
-.section{
-padding:4rem 1rem;
+justify-content:center;
 text-align:center;
+padding:20px;
+color:#fff;
 }
 
-.section h2{
-margin-bottom:20px;
-font-size:2rem;
-}
-
-/* DETAILS */
-
-details{
-max-width:760px;
-margin:30px auto;
-background:#fff;
-padding:1.8rem;
-border-radius:20px;
-box-shadow:0 6px 20px rgba(0,0,0,.12);
-}
-
-summary{
-font-size:1.4rem;
-font-weight:bold;
-cursor:pointer;
+.hero-content h1{
+font-size:52px;
 margin-bottom:15px;
 }
 
-/* PRODUCT IMAGES */
-
-.family-images,
-.bulk-images{
-display:flex;
-gap:12px;
-justify-content:center;
-flex-wrap:wrap;
-margin-top:16px;
-margin-bottom:16px;
+.hero-content p{
+font-size:18px;
+max-width:700px;
+margin:auto;
+line-height:1.6;
 }
 
-.family-images img,
-.bulk-images img{
-width:110px;
-height:130px;
-object-fit:cover;
+.shop-btn{
+margin-top:25px;
+padding:14px 30px;
+background:#d4af37;
+border:none;
+border-radius:12px;
+font-size:16px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* TRUST */
+
+.trust{
+background:#fff;
+padding:18px;
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+font-weight:600;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* SEARCH */
+
+.search-box{
+padding:30px 20px 10px;
+}
+
+#searchBar{
+width:100%;
+max-width:500px;
+display:block;
+margin:auto;
+padding:16px;
+border:none;
 border-radius:14px;
-box-shadow:0 4px 12px rgba(0,0,0,.2);
+font-size:16px;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+outline:none;
+}
+
+/* GIFT */
+
+#giftBox{
+padding:20px;
+text-align:center;
+}
+
+.gift-track{
+width:100%;
+max-width:500px;
+height:22px;
+background:#ddd;
+border-radius:50px;
+overflow:hidden;
+margin:15px auto;
+}
+
+#giftFill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#d4af37,#ffd700);
+transition:0.4s;
+}
+
+#giftText{
+font-weight:600;
+}
+
+/* PRODUCTS */
+
+.section-title{
+text-align:center;
+font-size:34px;
+margin-top:10px;
+font-weight:700;
+}
+
+#perfumeList{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+padding:40px 20px;
+max-width:1300px;
+margin:auto;
+}
+
+.card{
+background:#fff;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:0.3s;
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:240px;
+object-fit:cover;
+}
+
+.popular{
+position:absolute;
+top:12px;
+left:12px;
+background:#d4af37;
+padding:6px 12px;
+border-radius:30px;
+font-size:12px;
+font-weight:700;
+}
+
+.card-content{
+padding:18px;
+text-align:center;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.price{
+font-size:24px;
+font-weight:700;
+color:#d4af37;
+margin-bottom:15px;
+}
+
+.card button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#000;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card button:hover{
+background:#d4af37;
+color:#000;
 }
 
 /* CART */
 
 #cartPanel{
 position:fixed;
-right:0;
 top:0;
-width:340px;
-max-width:100%;
-height:100%;
-background:white;
-box-shadow:-4px 0 15px rgba(0,0,0,.3);
-padding:20px;
-display:none;
-overflow:auto;
-z-index:9999;
-}
-
-input,
-select{
+right:-100%;
 width:100%;
-padding:12px;
-margin-top:10px;
-border:1px solid #ddd;
-border-radius:8px;
+max-width:420px;
+height:100vh;
+background:#fff;
+z-index:9999;
+padding:25px;
+overflow:auto;
+transition:0.4s;
+box-shadow:-10px 0 25px rgba(0,0,0,0.2);
 }
 
-/* GIFT BOX */
+#cartPanel.active{
+right:0;
+}
 
-#giftBox{
-background:white;
-padding:20px;
-margin:20px;
+.cart-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.close-btn{
+background:#000;
+color:#fff;
+border:none;
+padding:10px 14px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 0;
+border-bottom:1px solid #eee;
+}
+
+.qty button{
+width:30px;
+height:30px;
+border:none;
+background:#000;
+color:#fff;
+border-radius:8px;
+font-weight:700;
+cursor:pointer;
+}
+
+.total-box{
+background:#f8f8f8;
+padding:18px;
+border-radius:14px;
+margin-top:20px;
+}
+
+.pay-btn{
+display:block;
+width:100%;
+padding:14px;
+margin-top:12px;
+border:none;
 border-radius:12px;
+background:#000;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+text-decoration:none;
 text-align:center;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.pay-btn:hover{
+opacity:0.9;
+}
+
+input,select{
+width:100%;
+padding:14px;
+margin-top:12px;
+border-radius:12px;
+border:1px solid #ddd;
+font-size:15px;
+outline:none;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:#fff;
+padding:14px 20px;
+border-radius:50px;
+text-decoration:none;
+font-weight:700;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* FOOTER */
 
 footer{
-background:#333;
+background:#000;
 color:#fff;
-padding:2rem 1rem;
+padding:40px 20px;
 text-align:center;
 }
 
-footer a{
-color:#d4af37;
-text-decoration:none;
-margin:0 5px;
+footer h3{
+margin-bottom:10px;
 }
 
-/* ANIMATION */
+@media(max-width:700px){
 
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:all .9s ease;
+.hero-content h1{
+font-size:36px;
 }
-
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
 
 .hero{
-padding:100px 15px;
-}
-
-.hero img{
-width:95%;
-}
-
-nav{
-gap:8px;
-}
-
-.link-btn,
-.buy-button{
-font-size:14px;
-padding:.6rem 1rem;
+height:60vh;
 }
 
 }
@@ -315,542 +378,641 @@ padding:.6rem 1rem;
 
 <body>
 
-<!-- HEADER -->
-
 <header>
 
-<img src="logo2.png" alt="THUBALESHA Logo">
+<div class="header-wrap">
 
-<nav>
-
-<a href="home">Home</a>
-<a href="#families">Families</a>
-<a href="#contact">Contact</a>
-<a href="1signup4.html">Signup</a>
-<a href="login.html">Login</a>
-<a href="admindashboard.html"></a>
-
-<div class="dropdown">
-
-<a class="link-btn" href="#">Products ▼</a>
-
-<div class="dropdown-content">
-<a href="perfumes.html">Perfumes</a>
-<a href="watches.html">Watches</a>
-<a href="sunglass.html">Sunglasses</a>
-<a href="earings.html">Earrings</a>
+<div class="logo">
+THUBALESHA <span>Fragrance</span>
 </div>
 
+<button class="cart-btn" onclick="openCart()">
+🛒 Cart (<span id="cartCount">0</span>)
+</button>
+
 </div>
-
-<a class="link-btn" onclick="openCart()">
-Cart (<span id="cartCount">0</span>)
-</a>
-
-</nav>
 
 </header>
 
-<!-- HERO -->
+<section class="hero">
 
-<section class="hero fade" id="home">
+<div class="hero-content">
 
-<video autoplay loop muted playsinline>
-<source src="aaamaybe.mp4" type="video/mp4">
-</video>
+<h1>Luxury Fragrances</h1>
 
-<img src="GIF-1.gif" alt="THUBALESHA Fragrance">
-
-<p class="tagline">
-A scent that lingers in their memory
+<p>
+Premium perfumes for men and women with secure online payment and nationwide delivery.
 </p>
+
+<button class="shop-btn" onclick="scrollProducts()">
+Shop Now
+</button>
+
+</div>
 
 </section>
 
-<!-- ABOUT -->
+<div class="trust">
 
-<section class="section fade">
+<div>✔ Trusted Store</div>
 
-<h2>About THUBALESHA</h2>
+<div>🚚 Nationwide Delivery</div>
 
-<p style="max-width:700px;margin:auto;">
-THUBALESHA Fragrance presents a curated collection of fragrance families crafted to express mood, confidence and lifestyle.
+<div>💳 Secure Payments</div>
+
+<div>🎁 Free Gift Above R750</div>
+
+</div>
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchBar"
+placeholder="Search perfumes..."
+onkeyup="searchPerfume()"
+/>
+
+</div>
+
+<div id="giftBox">
+
+<h3>🎁 Free Gift Progress</h3>
+
+<div class="gift-track">
+<div id="giftFill"></div>
+</div>
+
+<p id="giftText">
+Add items to unlock your gift
 </p>
 
-</section>
-
-<!-- GIFT -->
-
-<section id="giftBox">
-
-<h3>Spend R750 Get a FREE Gift 🎁</h3>
-
-<progress id="giftBar" value="0" max="1000" style="width:100%;height:20px;"></progress>
-
-</section>
-
-<!-- PRODUCTS -->
-
-<section class="section fade" id="families">
-
-<h2>Fragrance Families</h2>
-
-<!-- Floral -->
-
-<details open>
-
-<summary>🌸 Floral</summary>
-
-<div class="family-images">
-<img src="image22.png">
-<img src="image23.png">
-<img src="image24.png">
 </div>
 
-<p>
-Soft romantic flower-based fragrances including Dior Poison,
-Chanel No.5, Lady Million, Good Girl and Black Opium.
-</p>
-
-
-<a class="link-btn" href="perfumes.html">View perfumes</a>
-
-</details>
-
-<!-- Oriental -->
-
-<details>
-
-<summary>🔥 Oriental</summary>
-
-<div class="family-images">
-<img src="image20.png">
-<img src="image26.png">
-<img src="image27.png">
-</div>
-
-<p>
-Warm deep spicy evening fragrances including One Million,
-Invictus, Oud Wood and Dunhill Black.
-</p>
-
-
-<a class="link-btn" href="perfumes.html">View perfumes</a>
-  
-</details>
-
-<!-- Citrus -->
-
-<details>
-
-<summary>🍋 Citrus</summary>
-
-<div class="family-images">
-<img src="image5.png">
-<img src="image24.png">
-<img src="image27.png">
-</div>
-
-<p>
-Fresh uplifting energetic fragrances perfect for daytime wear.
-</p>
-
-<a class="link-btn" href="perfumes.html">View perfumes</a>
-
-
-
-</details>
-
-<!-- Woody -->
-
-<details>
-
-<summary>🌳 Woody</summary>
-
-<div class="family-images">
-<img src="image24.png">
-<img src="image26.png">
-<img src="image5.png">
-</div>
-
-<p>
-Earthy masculine woody fragrances including Creed Aventus,
-Aramis and Sheriff.
-</p>
-  
-
-<a class="link-btn" href="perfumes.html">View perfumes</a>
-  
-</details>
-
-<!-- Watches -->
-
-<details>
-
-<summary>⌚ Watches</summary>
-
-<div class="family-images">
-<img src="IMG-3329.png">
-<img src="ChatGPTImageMar2_2026at08_37_03PM.png">
-<img src="ChatGPTImageMar2_2026at08_47_29PM.png">
-</div>
-
-<p>Luxury watches collection.</p>
-
-<a class="link-btn" href="watches.html">View Watches</a>
-
-</details>
-
-<!-- Sunglasses -->
-
-<details>
-
-<summary>🕶 Sunglasses</summary>
-
-<div class="family-images">
-<img src="6_9c0f0450-0488-41a4-9b3b-9bc6a437b411.png">
-<img src="teniegg.png">
-<img src="ola2.png">
-</div>
-
-<p>Luxury sunglasses collection.</p>
-
-<a class="link-btn" href="sunglass.html">View Sunglasses</a>
-
-</details>
-
-<!-- Earrings -->
-
-<details>
-
-<summary>💎 Earrings</summary>
-
-<div class="family-images">
-<img src="ChatGPTImageApr21_2026at05_56_14AM.png">
-<img src="ChatGPTImageApr21_2026at05_57_54AM.png">
-<img src="ChatGPTImageApr21_2026at05_52_08AM.png">
-</div>
-
-<p>Elegant earrings collection.</p>
-
-<a class="link-btn" href="earings.html">View Earrings</a>
-
-</details>
-
-<!-- Bulk -->
-
-<details>
-
-<summary>📦 Bulk Buy</summary>
-
-<div class="bulk-images">
-<img src="image50.png">
-<img src="image20.png">
-<img src="image22.png">
-</div>
-
-<p>3 x 50ml Perfumes = R450</p>
-<p>10 x 50ml Perfumes = R1 500</p>
-<p>20 x 50ml Perfumes = R3 000</p>
-<p>50 x 50ml Perfumes = R6 000</p>
-
-<a class="buy-button"
-target="_blank"
-href="https://wa.me/27656911520?text=Hello%20I%20want%20bulk%20perfumes">
-Info via WhatsApp
-</a>
-
-</details>
-
-<!-- Referrals -->
-
-<details>
-
-<summary>💸 Referrals</summary>
-
-<div class="family-images">
-<img src="3.jpg">
-<img src="m1.jpeg">
-<img src="m2.jpg">
-</div>
-
-<p>
-Earn R50 for every 50ml bottle sale made and 15% on any other products  using your referral code.
-No joining fee. No stock needed. Unlimited earning potential.
-</p>
-
-<a class="link-btn" href="signup.html">
-Sign Up
-</a>
-
-</details>
-
-</section>
-
-<!-- CONTACT -->
-
-<section class="section fade" id="contact">
-
-<h2>Contact Us</h2>
-
-<p>📞 +27 16 989 1005</p>
-<p>📱 +27 65 691 1520</p>
-<p>💬 WhatsApp: +27 65 691 1520</p>
-<p>📧 admin@thubalesha.co.za</p>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer>
-
-<a href="terms.html">Terms</a> |
-<a href="privacy.html">Privacy</a> |
-<a href="refund.html">Refund</a> |
-<a href="shipping.html">Shipping</a> |
-<a href="about.html">About</a> |
-<a href="faq.html">FAQ</a>
-
-<p style="margin-top:15px;">
-© 2026 THUBALESHA Fragrance
-</p>
-
-</footer>
+<h2 class="section-title">
+Best Sellers
+</h2>
+
+<div id="perfumeList"></div>
 
 <!-- CART -->
 
 <div id="cartPanel">
 
+<div class="cart-top">
+
 <h2>Your Cart</h2>
+
+<button class="close-btn" onclick="closeCart()">
+✕
+</button>
+
+</div>
 
 <div id="cartItems"></div>
 
-<p style="margin-top:15px;">
-Shipping: R<span id="shippingPrice">60</span>
-</p>
+<div class="total-box">
 
-<h3 style="margin-top:10px;">
-Total: R<span id="totalPrice">0</span>
-</h3>
+<h3>Total: R<span id="totalPrice">0</span></h3>
 
-<button class="buy-button" onclick="showCheckout()">
+</div>
+
+<button class="pay-btn" onclick="showCheckout()">
 Checkout
 </button>
 
-<button class="buy-button" onclick="closeCart()">
-Close
-</button>
-
-<hr style="margin:20px 0;">
-
 <div id="checkout" style="display:none;">
 
-<h3>Delivery Details</h3>
+<h3 style="margin-top:20px;">
+Delivery Details
+</h3>
 
-<input id="name" placeholder="Full Name">
-<input id="email" placeholder="Email">
-<input id="phone" placeholder="Phone">
-<input id="address" placeholder="Delivery Address">
-<input id="referral" placeholder="Referral Code (optional)">
+<input id="name" type="text" placeholder="Full Name">
 
-<select id="shippingSelect" onchange="changeShipping()">
-<option value="60">Standard Shipping R60</option>
-<option value="120">Express Shipping R120</option>
+<input id="phone" type="tel" placeholder="Phone Number">
+
+<input id="address" type="text" placeholder="Delivery Address">
+
+<input id="referral" type="text" placeholder="Referral Code Optional">
+
+<select id="deliveryOption" onchange="changeDelivery()">
+
+<option value="60">
+Local Delivery - R60
+</option>
+
+<option value="120">
+Nationwide Delivery - R120
+</option>
+
 </select>
 
-<button class="buy-button" onclick="sendOrder()">
-Send Order
+<button class="pay-btn" onclick="placeOrder()">
+💳 Pay Securely
 </button>
 
-<h3 style="margin-top:20px;">Payment</h3>
-
-<a class="buy-button"
-href="https://pay.yoco.com/thubalesha-general-trading"
-target="_blank">
-Pay with YOCO
-</a>
-
-<a class="buy-button"
+<a
+class="pay-btn"
 href="https://www.paypal.com/ncp/payment/2QBAVWTMDFPFW"
 target="_blank">
-Pay with PayPal
+Pay With PayPal
 </a>
 
-<div style="margin-top:15px;background:#f7f7f7;padding:15px;border-radius:8px">
-
-<h4>EFT Payment</h4>
-
-<p><b>Bank:</b> TymeBank</p>
-<p><b>Account Number:</b> 5300 0064 836</p>
-<p><b>Account Type:</b> Current</p>
-<p><b>Branch Code:</b> 678910</p>
-<p><b>Reference:</b> Your Name + Order</p>
-
-<p style="margin-top:8px;font-size:14px;">
-After EFT please send proof of payment via WhatsApp.
-</p>
-
-</div>
-
-<p style="margin-top:15px;">
-Support: 📞 065 691 1520
-</p>
-
-<a class="buy-button"
+<a
+class="pay-btn"
 id="whatsappOrder"
 target="_blank">
-Order via WhatsApp
+Order Via WhatsApp
 </a>
 
 </div>
 
 </div>
 
-<!-- FLOATING WHATSAPP -->
-
-<a href="https://wa.me/27656911520"
-target="_blank"
-style="
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:14px 18px;
-border-radius:50px;
-text-decoration:none;
-font-weight:bold;
-z-index:9999;
-">
+<a
+href="https://wa.me/27656911520"
+class="whatsapp"
+target="_blank">
 WhatsApp
 </a>
 
-<!-- SCRIPT -->
+<footer>
+
+<h3>THUBALESHA Fragrance</h3>
+
+<p>
+Luxury perfumes delivered across South Africa.
+</p>
+
+<p style="margin-top:10px;">
+© 2026 All Rights Reserved
+</p>
+
+</footer>
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getDatabase,
+ref,
+push
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+
+apiKey:"AIzaSyDwUfXC0sXGxtNgVG_yvrDDzCNxAEeu8TY",
+
+authDomain:"payment-2d274.firebaseapp.com",
+
+databaseURL:"https://payment-2d274-default-rtdb.firebaseio.com",
+
+projectId:"payment-2d274",
+
+storageBucket:"payment-2d274.firebasestorage.app",
+
+messagingSenderId:"268933970850",
+
+appId:"1:268933970850:web:98c23b6d6872c85807d0fb"
+
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getDatabase(app);
+
+window.db = db;
+window.ref = ref;
+window.push = push;
+
+</script>
+
+<!-- MAIN SCRIPT -->
 
 <script>
 
-emailjs.init("0PazREzQtkxaCNEKN")
+const perfumes = [
 
-let cart=[]
-let shipping=60
+{
+name:"Dior Sauvage",
+popular:true,
+image:"https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=600&auto=format&fit=crop"
+},
 
-function openCart(){
-document.getElementById("cartPanel").style.display="block"
+{
+name:"Bleu de Chanel",
+popular:true,
+image:"https://images.unsplash.com/photo-1523293182086-7651a899d37f?q=80&w=600&auto=format&fit=crop"
+},
+
+{
+name:"Creed Aventus",
+popular:true,
+image:"https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=600&auto=format&fit=crop"
+},
+
+{
+name:"Black Opium",
+popular:true,
+image:"https://images.unsplash.com/photo-1615634262417-0c8a4c4d7d3c?q=80&w=600&auto=format&fit=crop"
+},
+
+{
+name:"Good Girl",
+popular:true,
+image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=600&auto=format&fit=crop"
+},
+
+{
+name:"One Million",
+popular:true,
+image:"https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=600&auto=format&fit=crop"
 }
 
-function closeCart(){
-document.getElementById("cartPanel").style.display="none"
+];
+
+let cart = [];
+
+let deliveryFee = 60;
+
+/* LOAD PRODUCTS */
+
+function loadPerfumes(list){
+
+const container =
+document.getElementById("perfumeList");
+
+container.innerHTML = "";
+
+list.forEach(p => {
+
+container.innerHTML += `
+
+<div class="card">
+
+${p.popular ? '<div class="popular">🔥 Popular</div>' : ''}
+
+<img src="${p.image}" alt="${p.name}">
+
+<div class="card-content">
+
+<h3>${p.name}</h3>
+
+<div class="price">
+R230
+</div>
+
+<button onclick="addToCart('${p.name}')">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
 }
 
-function addToCart(name,price){
+/* ADD TO CART */
 
-cart.push({name,price})
+function addToCart(name){
 
-updateCart()
-openCart()
+let item =
+cart.find(x => x.name === name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name:name,
+qty:1
+});
 
 }
+
+updateCart();
+
+openCart();
+
+}
+
+/* UPDATE CART */
 
 function updateCart(){
 
-let items=document.getElementById("cartItems")
-items.innerHTML=""
+const items =
+document.getElementById("cartItems");
 
-let total=0
+items.innerHTML = "";
 
-cart.forEach((p,index)=>{
+let subtotal = 0;
 
-items.innerHTML+=`
-<div style="margin-bottom:10px;padding:10px;background:#f5f5f5;border-radius:8px;">
-${p.name} - R${p.price}
+cart.forEach((item,index)=>{
+
+subtotal += item.qty * 230;
+
+items.innerHTML += `
+
+<div class="cart-item">
+
+<div>
+
+<strong>${item.name}</strong>
+
+<br>
+
+Qty: ${item.qty}
+
 </div>
-`
 
-total+=p.price
+<div class="qty">
 
-})
+<button onclick="changeQty(${index},-1)">
+-
+</button>
 
-total+=shipping
+<button onclick="changeQty(${index},1)">
++
+</button>
 
-document.getElementById("totalPrice").innerText=total
-document.getElementById("cartCount").innerText=cart.length
-document.getElementById("giftBar").value=total
+</div>
 
-let orderText=cart.map(p=>p.name).join(", ")
+</div>
 
-document.getElementById("whatsappOrder").href=
-"https://wa.me/27656911520?text=Hello I want to order: "
-+encodeURIComponent(orderText)+
-"%20Total%20R"+total
+`;
+
+});
+
+let total = subtotal + deliveryFee;
+
+document.getElementById("totalPrice").innerText =
+total;
+
+document.getElementById("cartCount").innerText =
+cart.reduce((a,b)=>a+b.qty,0);
+
+/* GIFT */
+
+let percent = (subtotal / 750) * 100;
+
+if(percent > 100){
+percent = 100;
+}
+
+document.getElementById("giftFill").style.width =
+percent + "%";
+
+document.getElementById("giftText").innerText =
+subtotal >= 750
+? "🎉 Gift Unlocked"
+: "Spend R" + (750 - subtotal) + " more";
+
+/* WHATSAPP */
+
+let orderText =
+cart.map(p =>
+`${p.name} x${p.qty}`
+).join(", ");
+
+document.getElementById("whatsappOrder").href =
+`https://wa.me/27656911520?text=Hello%20THUBALESHA,%20I%20want%20to%20order:%20${encodeURIComponent(orderText)}%20Total:%20R${total}`;
 
 }
 
-function changeShipping(){
+/* CHANGE QTY */
 
-shipping=parseInt(
-document.getElementById("shippingSelect").value
+function changeQty(index,change){
+
+cart[index].qty += change;
+
+if(cart[index].qty <= 0){
+
+cart.splice(index,1);
+
+}
+
+updateCart();
+
+}
+
+/* SEARCH */
+
+function searchPerfume(){
+
+const value =
+document.getElementById("searchBar")
+.value
+.toLowerCase();
+
+loadPerfumes(
+
+perfumes.filter(p =>
+p.name.toLowerCase().includes(value)
 )
 
-document.getElementById("shippingPrice").innerText=shipping
-
-updateCart()
+);
 
 }
+
+/* DELIVERY */
+
+function changeDelivery(){
+
+deliveryFee = parseInt(
+
+document.getElementById("deliveryOption").value
+
+);
+
+updateCart();
+
+}
+
+/* CART PANEL */
+
+function openCart(){
+
+document.getElementById("cartPanel")
+.classList.add("active");
+
+}
+
+function closeCart(){
+
+document.getElementById("cartPanel")
+.classList.remove("active");
+
+}
+
+/* CHECKOUT */
 
 function showCheckout(){
 
-document.getElementById("checkout").style.display="block"
+if(cart.length === 0){
+
+alert("Your cart is empty");
+
+return;
 
 }
 
-function sendOrder(){
+document.getElementById("checkout")
+.style.display = "block";
 
-let order=cart.map(p=>p.name).join(",")
+}
 
-emailjs.send(
-"service_ijy8vdb",
-"template_6ezz31q",
+/* PAYMENT */
+
+async function placeOrder(){
+
+if(cart.length === 0){
+
+alert("Cart is empty");
+
+return;
+
+}
+
+const name =
+document.getElementById("name").value.trim();
+
+const phone =
+document.getElementById("phone").value.trim();
+
+const address =
+document.getElementById("address").value.trim();
+
+const referral =
+document.getElementById("referral").value.trim();
+
+if(!name || !phone || !address){
+
+alert("Please fill all fields");
+
+return;
+
+}
+
+let total = 0;
+
+cart.forEach(item => {
+
+total += item.qty * 230;
+
+});
+
+total += deliveryFee;
+
+const orderData = {
+
+customer:name,
+
+phone:phone,
+
+address:address,
+
+referral:referral,
+
+items:cart,
+
+deliveryFee:deliveryFee,
+
+total:total,
+
+status:"pending",
+
+createdAt:new Date().toISOString()
+
+};
+
+try{
+
+/* SAVE ORDER */
+
+await push(
+
+window.ref(window.db,"orders"),
+
+orderData
+
+);
+
+/* CREATE PAYMENT */
+
+const response = await fetch(
+
+"https://createcheckout-zcvfozzkza-uc.a.run.app",
+
 {
-customer_name:document.getElementById("name").value,
-customer_email:document.getElementById("email").value,
-phone:document.getElementById("phone").value,
-address:document.getElementById("address").value,
-order:order,
-referral:document.getElementById("referral").value,
-total:document.getElementById("totalPrice").innerText
-}
-)
+method:"POST",
 
-.then(function(){
+headers:{
+"Content-Type":"application/json"
+},
 
-alert("Thanks for your order! We will contact you soon.")
+body:JSON.stringify({
 
-})
-.catch(function(error){
+amount:total,
 
-alert("Order failed. Please try again.")
+customer:name
 
 })
 
 }
 
-const fades=document.querySelectorAll('.fade')
+);
 
-const obs=new IntersectionObserver(entries=>{
+const data = await response.json();
 
-entries.forEach(e=>{
+/* REDIRECT */
 
-if(e.isIntersecting){
+if(data.url){
 
-e.target.classList.add('show')
+window.location.href = data.url;
+
+}else{
+
+alert("Payment link failed");
 
 }
 
-})
+}catch(error){
 
-},{threshold:.2})
+console.error(error);
 
-fades.forEach(f=>obs.observe(f))
+alert("Payment Error");
+
+}
+
+}
+
+/* SCROLL */
+
+function scrollProducts(){
+
+document.getElementById("perfumeList")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+/* START */
+
+loadPerfumes(perfumes);
+
+updateCart();
 
 </script>
 
